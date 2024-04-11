@@ -1,0 +1,111 @@
+---
+title: "Hands-on_Ex1"
+author: "Jayexx Low"
+---
+
+## Overview
+
+In this hands-on exercise, the basic principles and essential components of ggplot2 are visited. At the same time, hands-on experience is gained through using these components to plot statistical graphics based on the principles of Layered Grammar of Graphics.
+
+## Getting Started
+
+### Install & Load Libraries
+
+The code chunk below installs and launches the tidyverse package into R environment
+
+```{r}
+pacman:: p_load(tidyverse)
+```
+
+### Importing the data
+
+The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+Note that starting the code with \|# eval: false display the code chunk without running the code
+
+## GGPlot Introduction
+
+GGplot2 is an R package for declaratively creating data-driven graphics based on The Grammar of Graphics
+
+It is also part of the tidyverse family specially designed for visual exploration and communication.
+
+For more detail, visit [ggplot2 link](https://ggplot2.tidyverse.org/).
+
+### R graphics Vs GGPlot
+
+A comparison of Rgraphics against GG Plot is illustrated in the following code chunk
+
+::: panel-tabset
+## Rgraphics (Histogram)
+
+```{r}
+hist(exam_data$MATHS)
+```
+
+## GGPlot
+
+```{r}
+ggplot(data=exam_data, aes(x = MATHS)) +
+  geom_histogram(bins=10, 
+                 boundary = 100,
+                 color="black", 
+                 fill="grey") +
+  ggtitle("Distribution of Maths scores")
+```
+:::
+
+## Grammar of Graphics
+
+Before getting started using ggplot2, it is important to understand the principles of Grammer of Graphics.
+
+Grammar of Graphics is a general scheme for data visualization which breaks up graphs into semantic components such as scales and layers. It was introduced by Leland Wilkinson in 1999 Grammar of Graphics, Springer. The grammar of graphics is an answer to a question:
+
+What is a statistical graphic?
+
+In the nutshell, Grammar of Graphics defines the rules of structuring mathematical and aesthetic elements into a meaningful graph.
+
+There are two principles in Grammar of Graphics, they are:
+
+-   Graphics = distinct layers of grammatical elements
+-   Meaningful plots through aesthetic mapping
+
+A good grammar of graphics will provide insight into the composition of complicated graphics, and reveal unexpected connections between seemingly different graphics (Cox 1978). It also provides a strong foundation for understanding a diverse range of graphics. Furthermore, it may provide guidance on what a well-formed or correct graphic looks like, but there could still be many grammatically correct but nonsensical graphics.
+
+### Layered Grammar of Graphics
+
+ggplot2 is an implementation of Leland Wilkinson's Grammar of Graphics. There are 7 layers of grammar, described as follows.
+
+-   **Data**: The dataset being plotted.
+-   **Aesthetics**: take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.
+-   **Geometrics**: The visual elements used for our data, such as point, bar or line.
+-   **Facets**: splits the data into subsets to create multiple variations of the same graph (paneling, multiple plots).
+-   **Statistics**: statistical transformations that summarise data (e.g. mean, confidence intervals).
+-   **Coordinate systems**: define the plane on which data are mapped on the graphic.
+-   **Themes**: modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.
+
+#### Data
+
+```{r}
+glimpse(mpsz)
+```
+
+#### Aesthetics mappings
+
+
+#### Geometrics
+
+
+#### Statistics
+
+
+#### Facets
+
+
+#### Coordinate systems
+
+
+#### Themes
