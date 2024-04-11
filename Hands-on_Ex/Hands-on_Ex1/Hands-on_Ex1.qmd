@@ -89,9 +89,7 @@ ggplot2 is an implementation of Leland Wilkinson's Grammar of Graphics. There ar
 
 #### Data
 
-```{r}
-glimpse(mpsz)
-```
+
 
 #### Aesthetics mappings
 
