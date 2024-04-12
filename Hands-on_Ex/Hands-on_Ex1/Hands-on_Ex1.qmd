@@ -141,7 +141,8 @@ ggplot(data=exam_data,
        aes(x = MATHS)) +
   geom_dotplot(dotsize = 0.5)
 ```
-Rather than auto-assignment, the bin width could also be specified. 
+
+Rather than auto-assignment, the bin width could also be specified.
 
 Since each dot represents 1 observation, the y-axis is not meaningful and becomes misleading instead.
 
@@ -216,11 +217,10 @@ ggplot(data=exam_data,
            colour = GENDER)) +
   geom_density()
 ```
-  
+
 #### Geometric object: Boxplot
 
-geom_boxplot() displays continuous value list. It visualises five summary statistics (the median, two hinges and two whiskers), and all “outlying” points individually.
-The code chunk below plots boxplots by using geom_boxplot().
+geom_boxplot() displays continuous value list. It visualises five summary statistics (the median, two hinges and two whiskers), and all "outlying" points individually. The code chunk below plots boxplots by using geom_boxplot().
 
 ```{R}
 ggplot(data=exam_data, 
@@ -228,7 +228,6 @@ ggplot(data=exam_data,
            x= GENDER)) +    
   geom_boxplot()            
 ```
-
 
 Notches are used in box plots to help visually assess whether the medians of distributions differ. If the notches do not overlap, this is evidence that the medians are different.
 
@@ -241,22 +240,245 @@ ggplot(data=exam_data,
   geom_boxplot(notch=TRUE)
 ```
 
-#### Geometric object: Violin
+#### Geometric object: Violin Plot
+
+geom_violin is designed for creating violin plot. Violin plots are a way of comparing multiple data distributions. With ordinary density curves, it is difficult to compare more than just a few distributions because the lines visually interfere with each other. With a violin plot, it's easier to compare several distributions since they're placed side by side.
+
+The code below plot the distribution of Maths score by gender in violin plot.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(y = MATHS, 
+           x= GENDER)) +
+  geom_violin()
+```
+
 #### Geometric object: Points
+
+geom_point() is especially useful for creating scatterplot.
+
+The code chunk below plots a scatterplot showing the Maths and English grades of pupils by using geom_point().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, 
+           y=ENGLISH)) +
+  geom_point()            
+```
+
 #### Geometric object: combination
 
+The code chunk below plots the data points on the boxplots by using both geom_boxplot() and geom_point().
 
+```{R}
+ggplot(data=exam_data, 
+       aes(y = MATHS, 
+           x= GENDER)) +
+  geom_boxplot() +                    
+  geom_point(position="jitter", 
+             size = 0.5)        
+```
 
 ### GGPlot2 Essential Grammatical Elements: Statistics
 
+The Statistics functions statistically transform data, usually as some form of summary. For example:
+
+-   frequency of values of a variable (bar graph)
+    -   a mean
+    -   a confidence limit
+-   There are two ways to use these functions:
+    -   add a stat_() function and override the default geom, or
+    -   add a geom_() function and override the default stat.
+
+#### Stat function: stat_summary()
+
+The boxplots below are incomplete because the positions of the means were not shown.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(y = MATHS, x= GENDER)) +
+  geom_boxplot()
+```
+
+Mean values can be depicted by a red dot, using stat_summary() and overriding the default geom(), to address the above with the following code chunk.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(y = MATHS, x= GENDER)) +
+  geom_boxplot() +
+  stat_summary(geom = "point",       
+               fun.y="mean",         
+               colour ="red",        
+               size=4)
+```
+
+#### Stat function: using geom()
+
+The code chunk below adding mean values by using geom_() function and overriding the default stat.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(y = MATHS, x= GENDER)) +
+  geom_boxplot() +
+  geom_point(stat="summary",        
+             fun.y="mean",           
+             colour ="red",          
+             size=4)          
+```
+
+#### Stat function: geom_smooth() to plot best fit curve
+
+The interpretability of the scatterplot showing the relationship of Maths and English grades of pupils can be improved by adding a best fit curve.
+
+In the code chunk below, geom_smooth() is used to plot a best fit curve on the scatterplot.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(size=0.5)
+```
+
+The default method used is loess.
+
+The default smoothing method can be overridden as shown below.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, 
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5)
+```
 
 ### GGPlot2 Essential Grammatical Elements: Facets
 
+Facetting generates small multiples (sometimes also called trellis plot), each displaying a different subset of the data. They are an alternative to aesthetics for displaying additional discrete variables. ggplot2 supports two types of factes, namely: facet_grid() and facet_wrap.
+
+#### Facet functions: facet_wrap()
+
+facet_wrap wraps a 1d sequence of panels into 2d. This is generally a better use of screen space than facet_grid because most displays are roughly rectangular.
+
+The code chunk below plots a trellis plot using facet-wrap().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS)) +
+  geom_histogram(bins=20) +
+    facet_wrap(~ CLASS)
+```
+
+#### Facet functions: facet_grid()
+
+facet_grid() forms a matrix of panels defined by row and column facetting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data.
+
+The code chunk below plots a trellis plot using facet_grid().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS)) +
+  geom_histogram(bins=20) +
+    facet_grid(~ CLASS)
+```
 
 ### GGPlot2 Essential Grammatical Elements: Coordinate systems
 
+The Coordinates functions map the position of objects onto the plane of the plot. There are a number of different possible coordinate systems to use, they are:
+
+-   [`coord_cartesian()`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html): the default cartesian coordinate systems, where you specify x and y values (e.g. allows you to zoom in or out).
+-   [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html): a cartesian system with the x and y flipped.
+-   [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html): a cartesian system with a "fixed" aspect ratio (e.g. 1.78 for a "widescreen" plot).
+-   [`coord_quickmap()`](https://ggplot2.tidyverse.org/reference/coord_map.html): a coordinate system that approximates a good aspect ratio for maps.
+
+#### Coordinates function: coord_flip()
+
+By the default, the bar chart of ggplot2 is in vertical form.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar()
+```
+
+The code chunk below flips the horizontal bar chart into vertical bar chart by using coord_flip().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip()
+```
+
+#### Coordinates function: coord_cartesian()
+
+The scatterplot on the right is slightly misleading because the y-aixs and x-axis range are not equal.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, size=0.5)
+```
+
+The code chunk below fixed both the y-axis and x-axis range from 0-100.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100))
+```
 
 ### GGPlot2 Essential Grammatical Elements: Themes
 
+Themes control elements of the graph not related to the data. For example:
+
+-   background colour
+-   size of fonts
+-   gridlines
+-   colour of labels
+-   Built-in themes include: - theme_gray() (default) - theme_bw() - theme_classic()
+
+A list of theme can be found at this link. Each theme element can be conceived of as either a line (e.g. x-axis), a rectangle (e.g. graph background), or text (e.g. axis title).
+
+The code chunk below plot a horizontal bar chart using theme_gray().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip() +
+  theme_gray()
+```
+
+A horizontal bar chart plotted using theme_classic().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip() +
+  theme_classic()
+```
+A horizontal bar chart plotted using theme_minimal().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal()
+```
 
 ## References
+
+-   Hadley Wickham (2023) ggplot2: Elegant Graphics for Data Analysis. Online 3rd edition.
+-   Winston Chang (2013) R Graphics Cookbook 2nd edition. Online version.
+-   Healy, Kieran (2019) Data Visualization: A practical introduction. Online version
+-   Learning ggplot2 on Paper – Components
+-   Learning ggplot2 on Paper – Layer
+-   Learning ggplot2 on Paper – Scale
