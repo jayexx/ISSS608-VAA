@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html",
+    "href": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html",
+    "title": "Hands-on_Ex1",
+    "section": "",
+    "text": "In this hands-on exercise, the basic principles and essential components of ggplot2 are visited. At the same time, hands-on experience is gained through using these components to plot statistical graphics based on the principles of Layered Grammar of Graphics."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#overview",
+    "href": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#overview",
+    "title": "Hands-on_Ex1",
+    "section": "",
+    "text": "In this hands-on exercise, the basic principles and essential components of ggplot2 are visited. At the same time, hands-on experience is gained through using these components to plot statistical graphics based on the principles of Layered Grammar of Graphics."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#getting-started",
+    "href": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#getting-started",
+    "title": "Hands-on_Ex1",
+    "section": "Getting Started",
+    "text": "Getting Started\n\nInstall & Load Libraries\nThe code chunk below installs and launches the tidyverse package into R environment\n\npacman:: p_load(tidyverse)\n\n\n\nImporting the data\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nNote that starting the code with |# eval: false display the code chunk without running the code"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#ggplot-introduction",
+    "href": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#ggplot-introduction",
+    "title": "Hands-on_Ex1",
+    "section": "GGPlot Introduction",
+    "text": "GGPlot Introduction\nGGplot2 is an R package for declaratively creating data-driven graphics based on The Grammar of Graphics\nIt is also part of the tidyverse family specially designed for visual exploration and communication.\nFor more detail, visit ggplot2 link.\n\nR graphics Vs GGPlot\nA comparison of Rgraphics against GG Plot is illustrated in the following code chunk\n\nRgraphics (Histogram)GGPlot\n\n\n\nhist(exam_data$MATHS)\n\n\n\n\n\n\n\nggplot(data=exam_data, aes(x = MATHS)) +\n  geom_histogram(bins=10, \n                 boundary = 100,\n                 color=\"black\", \n                 fill=\"grey\") +\n  ggtitle(\"Distribution of Maths scores\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#grammar-of-graphics",
+    "href": "Hands-on_Ex/Hands-on_Ex1/Hands-on_Ex1.html#grammar-of-graphics",
+    "title": "Hands-on_Ex1",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\nBefore getting started using ggplot2, it is important to understand the principles of Grammer of Graphics.\nGrammar of Graphics is a general scheme for data visualization which breaks up graphs into semantic components such as scales and layers. It was introduced by Leland Wilkinson in 1999 Grammar of Graphics, Springer. The grammar of graphics is an answer to a question:\nWhat is a statistical graphic?\nIn the nutshell, Grammar of Graphics defines the rules of structuring mathematical and aesthetic elements into a meaningful graph.\nThere are two principles in Grammar of Graphics, they are:\n\nGraphics = distinct layers of grammatical elements\nMeaningful plots through aesthetic mapping\n\nA good grammar of graphics will provide insight into the composition of complicated graphics, and reveal unexpected connections between seemingly different graphics (Cox 1978). It also provides a strong foundation for understanding a diverse range of graphics. Furthermore, it may provide guidance on what a well-formed or correct graphic looks like, but there could still be many grammatically correct but nonsensical graphics.\n\nLayered Grammar of Graphics\nggplot2 is an implementation of Leland Wilkinson’s Grammar of Graphics. There are 7 layers of grammar, described as follows.\n\nData: The dataset being plotted.\nAesthetics: take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.\nGeometrics: The visual elements used for our data, such as point, bar or line.\nFacets: splits the data into subsets to create multiple variations of the same graph (paneling, multiple plots).\nStatistics: statistical transformations that summarise data (e.g. mean, confidence intervals).\nCoordinate systems: define the plane on which data are mapped on the graphic.\nThemes: modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.\n\n\nData\n\n\nAesthetics mappings\n\n\nGeometrics\n\n\nStatistics\n\n\nFacets\n\n\nCoordinate systems\n\n\nThemes"
+  }
+]

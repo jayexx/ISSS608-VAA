@@ -77,7 +77,7 @@ A good grammar of graphics will provide insight into the composition of complica
 
 ### Layered Grammar of Graphics
 
-ggplot2 is an implementation of Leland Wilkinson's Grammar of Graphics. There are 7 layers of grammar, described as follows.
+ggplot2 is an implementation of Leland Wilkinson's Grammar of Graphics. There are 7 layers of grammar, aka Essential Grammatical Elements, described as follows.
 
 -   **Data**: The dataset being plotted.
 -   **Aesthetics**: take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.
@@ -87,23 +87,131 @@ ggplot2 is an implementation of Leland Wilkinson's Grammar of Graphics. There ar
 -   **Coordinate systems**: define the plane on which data are mapped on the graphic.
 -   **Themes**: modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.
 
-#### Data
+### GGPlot2 Essential Grammatical Elements: Data
+
+With ggplot() a blank canvas for the data visualisation can be first intialised, as shown in the following code chunk.
+
+```{r}
+ggplot(data=exam_data)
+```
+
+### GGPlot2 Essential Grammatical Elements: Aesthetics mappings
+
+Aesthetic mappings utilises attributes of the data and and use them to influence visual characteristics, such as position, colour, size, shape, or transparency. Each visual characteristic can thus encode an aspect of the data and be used to convey information.
+
+All aesthetics of a plot are specified in the aes() function call (each geom layer can have its own aes specification)
+
+The code chunk below illustrates the use of aes() to add a simple aesthetic element (the x axis and label) into the plot.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS))
+```
+
+### GGPlot2 Essential Grammatical Elements: Geometrics
+
+Geometric objects are the centerpiece graphical marks placed on a plot. Examples include:
+
+-   geom_point for drawing individual points (e.g., a scatter plot)
+-   geom_line for drawing lines (e.g., for a line charts)
+-   geom_smooth for drawing smoothed lines (e.g., for simple trends or approximations)
+-   geom_bar for drawing bars (e.g., for bar charts)
+-   geom_histogram for drawing binned values (e.g. a histogram)
+-   geom_polygon for drawing arbitrary shapes
+-   geom_map for drawing polygons in the shape of a map! (You can access the data to use for these maps by using the map_data() function).
+
+#### Geometric object: Bar charts
+
+The code chunk below plots a bar chart by using geom_bar().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x=RACE)) +
+  geom_bar()
+```
+
+#### Geometric object: Dotplot
+
+In a dot plot, the width of a dot corresponds to the bin width (or maximum width, depending on the binning algorithm), and dots are stacked, with each dot representing one observation.
+
+In the code chunk below, geom_dotplot() of ggplot2 is used to plot a dot plot.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_dotplot(dotsize = 0.5)
+```
+Rather than auto-assignment, the bin width could also be specified. 
+
+Since each dot represents 1 observation, the y-axis is not meaningful and becomes misleading instead.
+
+To address the above, the code chunk specifies the bin width, and also removes the y-axis using scale_y_continuous().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_dotplot(binwidth=2.5,         
+               dotsize = 0.5) +      
+  scale_y_continuous(NULL,           
+                     breaks = NULL) 
+```
+
+#### Geometric object: Histograms
+
+In the code chunk below, geom_histogram() is used to create a simple histogram by using values in MATHS field of exam_data.
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_histogram()
+```
+
+#### Geometric object modification: geom()
+
+In the code chunk below,
+
+-   bins argument is used to change the number of bins to 20,
+-   fill argument is used to shade the histogram with light blue color, and
+-   color argument is used to change the outline colour of the bars in black
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS)) +
+  geom_histogram(bins=20,            
+                 color="black",      
+                 fill="light blue")  
+```
+
+#### Geometric object modification: aes()
+
+The code chunk below changes the interior colour of the histogram (i.e. fill) by using sub-group of aesthetic().
+
+```{R}
+ggplot(data=exam_data, 
+       aes(x= MATHS, 
+           fill = GENDER)) +
+  geom_histogram(bins=20, 
+                 color="grey30")
+```
+
+#### Geometric object: Density
+#### Geometric object: Boxplot
+#### Geometric object: Violin
+#### Geometric object: Points
+#### Geometric object: combination
 
 
 
-#### Aesthetics mappings
+### GGPlot2 Essential Grammatical Elements: Statistics
 
 
-#### Geometrics
+### GGPlot2 Essential Grammatical Elements: Facets
 
 
-#### Statistics
+### GGPlot2 Essential Grammatical Elements: Coordinate systems
 
 
-#### Facets
+### GGPlot2 Essential Grammatical Elements: Themes
 
 
-#### Coordinate systems
-
-
-#### Themes
+## References
