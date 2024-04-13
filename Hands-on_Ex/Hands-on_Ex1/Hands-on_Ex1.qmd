@@ -287,8 +287,8 @@ The Statistics functions statistically transform data, usually as some form of s
     -   a mean
     -   a confidence limit
 -   There are two ways to use these functions:
-    -   add a stat_() function and override the default geom, or
-    -   add a geom_() function and override the default stat.
+    -   add a stat\_() function and override the default geom, or
+    -   add a geom\_() function and override the default stat.
 
 #### Stat function: stat_summary()
 
@@ -314,7 +314,7 @@ ggplot(data=exam_data,
 
 #### Stat function: using geom()
 
-The code chunk below adding mean values by using geom_() function and overriding the default stat.
+The code chunk below adding mean values by using geom\_() function and overriding the default stat.
 
 ```{R}
 ggplot(data=exam_data, 
@@ -464,6 +464,7 @@ ggplot(data=exam_data,
   coord_flip() +
   theme_classic()
 ```
+
 A horizontal bar chart plotted using theme_minimal().
 
 ```{R}
@@ -479,6 +480,6 @@ ggplot(data=exam_data,
 -   Hadley Wickham (2023) ggplot2: Elegant Graphics for Data Analysis. Online 3rd edition.
 -   Winston Chang (2013) R Graphics Cookbook 2nd edition. Online version.
 -   Healy, Kieran (2019) Data Visualization: A practical introduction. Online version
--   Learning ggplot2 on Paper – Components
--   Learning ggplot2 on Paper – Layer
--   Learning ggplot2 on Paper – Scale
+-   Learning ggplot2 on Paper -- Components
+-   Learning ggplot2 on Paper -- Layer
+-   Learning ggplot2 on Paper -- Scale
