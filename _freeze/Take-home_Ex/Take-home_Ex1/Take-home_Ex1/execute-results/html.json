@@ -1,0 +1,14 @@
+{
+  "hash": "da015288e1d6fa273331a65d3c594e48",
+  "result": {
+    "markdown": "---\ntitle: \"Take-home Ex1\"\nauthor: \"Jayexx Low\"\ndate: \"April 13, 2024\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n\n## Introduction\n\nThere are two major residential property market in Singapore, namely public and private housing. Public housing aims to meet the basic need of the general public with monthly household income less than or equal to S$14,000. For families with monthly household income more than S$14,000, they need to turn to the private residential market.\n\n\n\n## Objectives\n\nAssuming the role of a graphical editor of a median company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.\n\nThe write-up of the take-home exercise should include but not limited to the followings:\n\nA reproducible description of the procedures used to prepare the analytical visualisation. Please refer to the senior submission I shared below.\n\nA write-up of not more than 150 words per each data visualisation, describing and discussing the patterns and/or trends reveal by each visualisation prepared.\n\nThe key objectives of this exercise are:\n\n-   To perform geovisualisation and analysis of Origin-Destination flows of passenger trips\n-   To perform Spatial Interaction Modelling for Origin-Destination flows of passenger trips\n\n## Getting Started\n\nThe code chunk below load the following libraries:\n\n-   tidyverse: an amalgamation of libraries for data handling (including readr, tidyr, dplyr, ggplot2)\n-   knitr: for creating html table\n-   reshape2: for reshaping functions\n-   stplanr:\n-   spdep:\n-   sfdep: for creating an sf and tidyverse friendly interface as well as for introducing new functionality that is not present in spdep\n-   plotly: for interactive plots\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman::p_load(tmap, sf, sp, tidyverse, knitr,  reshape2, stplanr, performance, DT, ggpubr) \n```\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -307,7 +307,7 @@ ggplot(data=exam_data,
        aes(y = MATHS, x= GENDER)) +
   geom_boxplot() +
   stat_summary(geom = "point",       
-               fun.y="mean",         
+               fun ="mean",         
                colour ="red",        
                size=4)
 ```
