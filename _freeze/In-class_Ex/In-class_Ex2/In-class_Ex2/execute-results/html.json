@@ -1,0 +1,16 @@
+{
+  "hash": "c27e117c78ba4fd4f2c3267bdd2441bf",
+  "result": {
+    "markdown": "---\ntitle: \"In-class Ex2\"\nauthor: \"Jayexx Low\"\ndate: \"April 20, 2024\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n## Getting Started\n\n### Install & Load Libraries\n\nThe code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman:: p_load(tidyverse, ggdist, ggridges,\n                colourspace, ggthemes)\n```\n:::\n\n\n### Importing the data\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nexam_df <- read_csv(\"data/Exam_data.csv\")\n```\n:::\n\n\n## Histogram\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_histogram(\n    color = \"#1696d2\",\n  )\n```\n\n::: {.cell-output-display}\n![](In-class_Ex2_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\n## Probability Density plot\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_density(\n    color = \"#1696d2\",\n    adjust = .65,\n    alpha = .6\n  )           \n```\n\n::: {.cell-output-display}\n![](In-class_Ex2_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n\n\n## Alternative design\n\n```\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_density(\n    color = \"#1696d2\",\n    adjust = .65,\n    alpha = .6\n  ) +\n  stat_function(\n    fun = dnorm, args = list(mean = mean_eng,\n                             sd = std_eng),\n    col = \"grey30\",\n    size = .8\n  ) +\n  geom_vline(\n    aes(xintercept = mean_eng),\n    colour=\"4d5887\",\n    linewidth = .6,\n    linetype = \"dashed\"\n    ) +\n  annotate(geom = \"text\",\n           x = mean_eng - 8,\n           y = 0.04,\n           label = paste)\n```\n\n\n\n\n\n\n\n\n\n\n",
+    "supporting": [
+      "In-class_Ex2_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

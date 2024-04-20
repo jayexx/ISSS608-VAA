@@ -138,5 +138,40 @@
     "title": "Hands-on Ex2",
     "section": "Plotting Multiple Graphs",
     "text": "Plotting Multiple Graphs\n\nThe plotThe code\n\n\n\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\n\n\n\n\n\n\n\np1 &lt;- ggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\n\n\n\n\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\n\np2 &lt;- ggplot(data=exam_data, \n             aes(x = ENGLISH)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\n\n\n\n\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\n\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\nComposite Graphics\n\nCombining 2 ggplot2 graphs\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\np1 + p2 \n\n\n\n\n\nCombining 3 ggplot2 graphs\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\n(p1 / p2) | p3\n\n\n\n\n\nComposite figure with tag\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\n((p1 / p2) | p3) + \n  plot_annotation(tag_levels = 'I')\n\n\n\n\n\nComposite figure with insert\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\np3 + inset_element(p2, \n                   left = 0.02, \n                   bottom = 0.7, \n                   right = 0.5, \n                   top = 1)\n\n\n\n\n\nComposite figure by using patchwork and ggtheme\n\nThe plotThe code\n\n\n\n\n\n\n\n\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork & theme_economist()\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nPlease note."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex2/In-class_Ex2.html",
+    "href": "In-class_Ex/In-class_Ex2/In-class_Ex2.html",
+    "title": "In-class Ex2",
+    "section": "",
+    "text": "The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\npacman:: p_load(tidyverse, ggdist, ggridges,\n                colourspace, ggthemes)\n\n\n\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\nexam_df &lt;- read_csv(\"data/Exam_data.csv\")"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#getting-started",
+    "href": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#getting-started",
+    "title": "In-class Ex2",
+    "section": "",
+    "text": "The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\npacman:: p_load(tidyverse, ggdist, ggridges,\n                colourspace, ggthemes)\n\n\n\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\nexam_df &lt;- read_csv(\"data/Exam_data.csv\")"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#histogram",
+    "href": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#histogram",
+    "title": "In-class Ex2",
+    "section": "Histogram",
+    "text": "Histogram\n\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_histogram(\n    color = \"#1696d2\",\n  )"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#probability-density-plot",
+    "href": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#probability-density-plot",
+    "title": "In-class Ex2",
+    "section": "Probability Density plot",
+    "text": "Probability Density plot\n\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_density(\n    color = \"#1696d2\",\n    adjust = .65,\n    alpha = .6\n  )"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#alternative-design",
+    "href": "In-class_Ex/In-class_Ex2/In-class_Ex2.html#alternative-design",
+    "title": "In-class Ex2",
+    "section": "Alternative design",
+    "text": "Alternative design\nggplot(data=exam_df, \n       aes(x = ENGLISH)) +\n  geom_density(\n    color = \"#1696d2\",\n    adjust = .65,\n    alpha = .6\n  ) +\n  stat_function(\n    fun = dnorm, args = list(mean = mean_eng,\n                             sd = std_eng),\n    col = \"grey30\",\n    size = .8\n  ) +\n  geom_vline(\n    aes(xintercept = mean_eng),\n    colour=\"4d5887\",\n    linewidth = .6,\n    linetype = \"dashed\"\n    ) +\n  annotate(geom = \"text\",\n           x = mean_eng - 8,\n           y = 0.04,\n           label = paste)"
   }
 ]

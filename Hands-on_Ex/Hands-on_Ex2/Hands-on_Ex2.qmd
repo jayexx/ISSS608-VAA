@@ -268,8 +268,8 @@ ggplot(data=exam_data,
 
 ```{R}
 #| echo: true
-#| fig-width: 3
-#| fig-height: 9
+#| fig-width: 12
+
 ggplot(data=exam_data, 
              aes(x = MATHS)) +
   geom_histogram(bins=20, 
@@ -283,8 +283,8 @@ ggplot(data=exam_data,
 ## The code
 
 ```{R}         
-#| fig-width: 3
-#| fig-height: 9
+#| fig-width: 12
+
 p1 <- ggplot(data=exam_data, 
              aes(x = MATHS)) +
   geom_histogram(bins=20, 
@@ -301,8 +301,8 @@ p1 <- ggplot(data=exam_data,
 
 ```{R}
 #| echo: false
-#| fig-width: 3
-#| fig-height: 9
+#| fig-width: 12
+
 ggplot(data=exam_data, 
              aes(x = ENGLISH)) +
   geom_histogram(bins=20, 
@@ -316,8 +316,8 @@ ggplot(data=exam_data,
 ## The code
 
 ```{R}         
-#| fig-width: 3
-#| fig-height: 9
+#| fig-width: 12
+
 p2 <- ggplot(data=exam_data, 
              aes(x = ENGLISH)) +
   geom_histogram(bins=20, 
@@ -334,8 +334,8 @@ p2 <- ggplot(data=exam_data,
 
 ```{R}
 #| echo: false
-#| fig-width: 3
-#| fig-height: 9
+#| fig-width: 12
+
 ggplot(data=exam_data, 
              aes(x= MATHS, 
                  y=ENGLISH)) +
@@ -350,8 +350,7 @@ ggplot(data=exam_data,
 ## The code
 
 ```{R}
-#| fig-width: 3
-#| fig-height: 9
+
 p3 <- ggplot(data=exam_data, 
              aes(x= MATHS, 
                  y=ENGLISH)) +
@@ -373,8 +372,8 @@ p3 <- ggplot(data=exam_data,
 
 ```{R}
 #| echo: false
-#| fig-width: 3
-#| fig-height: 2
+#| fig-width: 12
+
 p1 + p2 
 ```
 
@@ -392,8 +391,8 @@ p1 + p2
 
 ```{R}
 #| echo: false
-#| fig-width: 1
-#| fig-height: 9
+#| fig-width: 12
+
 (p1 / p2) | p3
 ```
 
@@ -411,7 +410,7 @@ p1 + p2
 
 ```{R}
 #| echo: false
-#| fig-width: 5
+#| fig-width: 12
 
 ((p1 / p2) | p3) + 
   plot_annotation(tag_levels = 'I') &
@@ -459,7 +458,7 @@ p3 + inset_element(p2,
 
 ```{R}
 #| echo: false
-#| fig-width: 5
+#| fig-width: 12
 patchwork <- (p1 / p2) | p3
 patchwork & theme_economist() &
 theme(plot.title = element_text(size=9))
