@@ -1,0 +1,90 @@
+---
+title: "In-class Ex2"
+author: "Jayexx Low"
+date: "April 20, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+## Getting Started
+
+### Install & Load Libraries
+
+The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment
+
+```{r}
+pacman:: p_load(tidyverse, ggdist, ggridges,
+                colourspace, ggthemes)
+```
+
+### Importing the data
+
+The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+
+```{r}
+exam_df <- read_csv("data/Exam_data.csv")
+```
+
+## Histogram
+
+```{R}
+ggplot(data=exam_df, 
+       aes(x = ENGLISH)) +
+  geom_histogram(
+    color = "#1696d2",
+  )
+```
+
+## Probability Density plot
+
+```{R}
+ggplot(data=exam_df, 
+       aes(x = ENGLISH)) +
+  geom_density(
+    color = "#1696d2",
+    adjust = .65,
+    alpha = .6
+  )           
+```
+
+## Alternative design
+
+```{R}
+ggplot(data=exam_df, 
+       aes(x = ENGLISH)) +
+  geom_density(
+    color = "#1696d2",
+    adjust = .65,
+    alpha = .6
+  ) +
+  stat_function(
+    fun = dnorm, args = list(mean = mean_eng,
+                             sd = std_eng),
+    col = "grey30",
+    size = .8
+  ) +
+  geom_vline(
+    aes(xintercept = mean_eng),
+    colour="4d5887",
+    linewidth = .6,
+    linetype = "dashed"
+    ) +
+  annotate(geom = "text",
+           x = mean_eng - 8,
+           y = 0.04,
+           label = paste)
+```
+
+
+
+
+
+
+
+
+
+
