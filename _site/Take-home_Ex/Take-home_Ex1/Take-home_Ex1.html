@@ -199,7 +199,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" id="toc-data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" class="nav-link" data-scroll-target="#data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables">Data Visualisation 1: Distribution of unit sales over of property classification variables</a></li>
   <li><a href="#data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" id="toc-data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" class="nav-link" data-scroll-target="#data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters">Data Visualisation 2: Prevalence of distribution patterns over past quarters</a></li>
   <li><a href="#data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" id="toc-data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" class="nav-link" data-scroll-target="#data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors">Data Visualisation 3: Correlation between price per area and potential interacting factors</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -549,7 +548,7 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 </div>
 </div>
 </div>
-<p>From the above, the outliers are not particularly distinct trailing out from the right tail of the box plot.</p>
+<p>From the above, outliers are not particularly distinct as there are quite a sizable number trailing out from the right tail of the box plot.</p>
 </section>
 </section>
 <section id="data-transformation" class="level3">
@@ -558,65 +557,71 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <table class="table">
 <colgroup>
 <col style="width: 1%">
-<col style="width: 6%">
+<col style="width: 4%">
 <col style="width: 2%">
-<col style="width: 30%">
-<col style="width: 56%">
+<col style="width: 21%">
+<col style="width: 68%">
+<col style="width: 0%">
 </colgroup>
-<thead>
-<tr class="header">
-<th>S/N</th>
-<th>Variable</th>
-<th>Data Type</th>
-<th>Description</th>
-<th>Remarks</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
+<td><h1 id="sn">S/N</h1></td>
+<td><h1 id="variable">Variable</h1></td>
+<td><h1 id="data-type">Data Type</h1></td>
+<td><h1 id="description">Description</h1></td>
+<td><h1 id="remarks">Remarks</h1></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>1</td>
 <td>Project Name</td>
 <td>chr</td>
 <td>Private Residential Development Project Name</td>
 <td>No missing values suggests that all property transactions in the data set belong to a private project development</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>2</td>
 <td>Transacted Price ($)</td>
 <td>num</td>
 <td>Transacted Property Sale Price</td>
 <td>Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>3</td>
 <td>Area (SQFT)</td>
 <td>num</td>
 <td>Property Floor Area (aka Unit Size) in SQFT</td>
 <td>Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>4</td>
 <td>Unit Price ($ PSF)</td>
 <td>num</td>
 <td>Sale Price per Floor Area in SQFT</td>
 <td>PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data Visualisation 3.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>5</td>
 <td>Sale Date</td>
 <td>chr</td>
 <td>Date of Sales Transaction</td>
 <td><p>Sale date will be required for Data Visualisation 2 to provide granularity on time-wise trends across the quarters.</p>
 <p>Data type will need to be changed to Date instead of chr.</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>6</td>
 <td>Address</td>
 <td>chr</td>
 <td>Detailed line of address</td>
 <td>Address is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>7</td>
 <td>Type of Sale</td>
 <td>chr</td>
@@ -627,8 +632,9 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <li><p>resale of existing property</p></li>
 </ul></td>
 <td>Type of sale will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>8</td>
 <td>Type of Area</td>
 <td>chr</td>
@@ -638,29 +644,33 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <li><p>solely owned by the property owner</p></li>
 </ul></td>
 <td>Type of Area is closely related to property type, but is not selected as the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>9</td>
 <td>Area (SQM)</td>
 <td>num</td>
 <td>Property Floor Area (aka Unit Size) in SQM</td>
 <td>Since price is already known to be strongly correlated to Area, Price per Area will potentially provide greater insights to multiple stakeholders.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>10</td>
 <td>Unit Price ($ PSM)</td>
 <td>num</td>
 <td>Sale Price per Floor Area in SQM</td>
 <td>PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data visualisation 3.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>11</td>
 <td>Nett Price($)</td>
 <td>chr</td>
 <td>Price taking away officially recorded discounts and grants by URA</td>
 <td>Missing Values found for this variable in majority of rows, and since it has a similar purpose as transaction price, the latter will be used instead.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>12</td>
 <td>Property Type</td>
 <td>chr</td>
@@ -672,89 +682,339 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <li><p>Detached</p></li>
 </ul></td>
 <td>Property Type will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>13</td>
 <td>Number of Units</td>
 <td>num</td>
 <td>Number of units sold in the single transaction</td>
+<td><p>Number of units is chosen as the dependent variable for Data Visualisation 1 and 2 to explore the distribution of unit sales by property classifications.</p>
+<p>To minimise complexity in the visualisation, the multiple-value transactions will be filtered away as outliers.</p></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>14</td>
 <td>Tenure</td>
 <td>chr</td>
 <td>Tenure period granted to the property owner over the land starting from the date of completion</td>
-<td>Tenure will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+<td><p>Tenure will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</p>
+<p>To contain the wide variation in representations, the values will be binned such that all lease years less than 900 years will be classified as “Leasehold”, while values above will be classified as “999years/Freehold”</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>15</td>
 <td>Completion Date</td>
 <td>chr</td>
 <td>Year when the first building project is deemed completed upon grant of the tenure of the land.</td>
-<td><p>Missing values found for this variable in minority of rows. The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3,</p>
-<p>Hence data transformation is required to remove rows with missing values, derive property age with 2024 as a reference point, and replace uncompleted properties as 0 in age.</p></td>
+<td>Missing values found for this variable in minority of rows. The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3, | | Hence data transformation is required to remove rows with missing values, derive property age with 2024 as a reference point, and replace “Uncompleted” properties as 0 in age.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>16</td>
 <td>Purchaser Address Indicator</td>
 <td>chr</td>
 <td>Type of residence of the purchaser’s address which he/she need not necessarily own</td>
 <td>This could be a variable</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>17</td>
 <td>Postal Code</td>
 <td>chr</td>
 <td>Geographical code which is unique to the building address of transacted property</td>
 <td>Postal Code is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>18</td>
 <td>Postal District</td>
 <td>chr</td>
 <td>Geographical code which is unique to the postal district of transacted property, total of 28 districts in Singapore</td>
 <td>Postal District is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>19</td>
 <td>Postal Sector</td>
 <td>chr</td>
 <td>Geographical code unique to postal sector of transacted property, which is a sub area of district, total of 81 sectors in Singapore</td>
 <td>Postal Sector is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>20</td>
 <td>Planning Region</td>
 <td>chr</td>
 <td>Geographical region of transacted property, total of 5 regions - Central, North, North East, East and West.</td>
 <td>Planning Region is the least complex amongst the geographical variables, and hence is selected as an ideal property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>21</td>
 <td>Planning Area</td>
 <td>chr</td>
 <td>Name of geographical area of transacted property, total of 55 areas in Singapore</td>
 <td>Planning Area is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+<td></td>
 </tr>
 </tbody>
 </table>
+<p>Based on the above, the data transformations required in preparation for the Data Visualisation is done in the following code chunk.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For version control, start by defining new transformed datasets as copies of original dataset</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm <span class="ot">&lt;-</span> Realis24Q1</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm <span class="ot">&lt;-</span> Realis_merged</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Sale date to date data type</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">dmy</span>(Realis24Q1<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">dmy</span>(Realis_merged<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># For Completion Date, (1) filter out missing values, (2) Calculate age of property caa 2024, (3) set Uncompleted as age 0</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm <span class="ot">&lt;-</span> Realis24Q1_trfm <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm <span class="ot">&lt;-</span> Realis_merged_trfm <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>))</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>[Realis24Q1_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Uncompleted"</span>] <span class="ot">&lt;-</span> <span class="dv">2024</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>[Realis_merged_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Uncompleted"</span>] <span class="ot">&lt;-</span> <span class="dv">2024</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm<span class="sc">$</span>Property_Age <span class="ot">&lt;-</span> <span class="dv">2024</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(Realis24Q1_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm<span class="sc">$</span>Property_Age <span class="ot">&lt;-</span> <span class="dv">2024</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(Realis_merged_trfm<span class="sc">$</span><span class="st">`</span><span class="at">Completion Date</span><span class="st">`</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># For number of units, filter out the multiple-property transactions as outliers</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm <span class="ot">&lt;-</span> Realis24Q1_trfm <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm <span class="ot">&lt;-</span> Realis_merged_trfm <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># For Tenure, bin values into Leasehold and 999yrs/Freehold</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>Realis24Q1_trfm <span class="ot">&lt;-</span> Realis24Q1_trfm <span class="sc">%&gt;%</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Tenure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^Freehold"</span>, Tenure) <span class="sc">~</span> <span class="st">"999yrs/Freehold"</span>,</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^9[0-9]{2}"</span>, Tenure) <span class="sc">~</span> <span class="st">"999yrs/Freehold"</span>,</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Leasehold"</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm <span class="ot">&lt;-</span> Realis_merged_trfm <span class="sc">%&gt;%</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Tenure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^Freehold"</span>, Tenure) <span class="sc">~</span> <span class="st">"999yrs/Freehold"</span>,</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^9[0-9]{2}"</span>, Tenure) <span class="sc">~</span> <span class="st">"999yrs/Freehold"</span>,</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Leasehold"</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Review transformed dataset</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Realis24Q1_trfm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4,783
+Columns: 22
+$ `Project Name`                &lt;chr&gt; "THE LANDMARK", "POLLEN COLLECTION", "SK…
+$ `Transacted Price ($)`        &lt;dbl&gt; 2726888, 3850000, 2346000, 2190000, 1954…
+$ `Area (SQFT)`                 &lt;dbl&gt; 1076.40, 1808.35, 1087.16, 807.30, 796.5…
+$ `Unit Price ($ PSF)`          &lt;dbl&gt; 2533, 2129, 2158, 2713, 2453, 2577, 838,…
+$ `Sale Date`                   &lt;date&gt; 2024-01-01, 2024-01-01, 2024-01-01, 202…
+$ Address                       &lt;chr&gt; "173 CHIN SWEE ROAD #22-11", "34 POLLEN …
+$ `Type of Sale`                &lt;chr&gt; "New Sale", "New Sale", "New Sale", "New…
+$ `Type of Area`                &lt;chr&gt; "Strata", "Land", "Strata", "Strata", "S…
+$ `Area (SQM)`                  &lt;dbl&gt; 100.0, 168.0, 101.0, 75.0, 74.0, 123.0, …
+$ `Unit Price ($ PSM)`          &lt;dbl&gt; 27269, 22917, 23228, 29200, 26405, 27741…
+$ `Nett Price($)`               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Property Type`               &lt;chr&gt; "Condominium", "Terrace House", "Apartme…
+$ `Number of Units`             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ Tenure                        &lt;chr&gt; "Leasehold", "Leasehold", "Leasehold", "…
+$ `Completion Date`             &lt;chr&gt; "2024", "2024", "2024", "2024", "2024", …
+$ `Purchaser Address Indicator` &lt;chr&gt; "Private", "N.A", "HDB", "N.A", "Private…
+$ `Postal Code`                 &lt;chr&gt; "169878", "807233", "469657", "118992", …
+$ `Postal District`             &lt;chr&gt; "03", "28", "16", "05", "21", "21", "28"…
+$ `Postal Sector`               &lt;chr&gt; "16", "80", "46", "11", "59", "58", "79"…
+$ `Planning Region`             &lt;chr&gt; "Central Region", "North East Region", "…
+$ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Queenst…
+$ Property_Age                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 20, 11, 9, 11, 8, 8, 1…</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Realis_merged_trfm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 26,117
+Columns: 22
+$ `Project Name`                &lt;chr&gt; "THE LANDMARK", "POLLEN COLLECTION", "SK…
+$ `Transacted Price ($)`        &lt;dbl&gt; 2726888, 3850000, 2346000, 2190000, 1954…
+$ `Area (SQFT)`                 &lt;dbl&gt; 1076.40, 1808.35, 1087.16, 807.30, 796.5…
+$ `Unit Price ($ PSF)`          &lt;dbl&gt; 2533, 2129, 2158, 2713, 2453, 2577, 838,…
+$ `Sale Date`                   &lt;date&gt; 2024-01-01, 2024-01-01, 2024-01-01, 202…
+$ Address                       &lt;chr&gt; "173 CHIN SWEE ROAD #22-11", "34 POLLEN …
+$ `Type of Sale`                &lt;chr&gt; "New Sale", "New Sale", "New Sale", "New…
+$ `Type of Area`                &lt;chr&gt; "Strata", "Land", "Strata", "Strata", "S…
+$ `Area (SQM)`                  &lt;dbl&gt; 100.0, 168.0, 101.0, 75.0, 74.0, 123.0, …
+$ `Unit Price ($ PSM)`          &lt;dbl&gt; 27269, 22917, 23228, 29200, 26405, 27741…
+$ `Nett Price($)`               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Property Type`               &lt;chr&gt; "Condominium", "Terrace House", "Apartme…
+$ `Number of Units`             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ Tenure                        &lt;chr&gt; "Leasehold", "Leasehold", "Leasehold", "…
+$ `Completion Date`             &lt;chr&gt; "2024", "2024", "2024", "2024", "2024", …
+$ `Purchaser Address Indicator` &lt;chr&gt; "Private", "N.A", "HDB", "N.A", "Private…
+$ `Postal Code`                 &lt;chr&gt; "169878", "807233", "469657", "118992", …
+$ `Postal District`             &lt;chr&gt; "03", "28", "16", "05", "21", "21", "28"…
+$ `Postal Sector`               &lt;chr&gt; "16", "80", "46", "11", "59", "58", "79"…
+$ `Planning Region`             &lt;chr&gt; "Central Region", "North East Region", "…
+$ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Queenst…
+$ Property_Age                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 20, 11, 9, 11, 8, 8, 1…</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables">Data Visualisation 1: Distribution of unit sales over of property classification variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bar charts for each categorical variables</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Units by Property Type"</span>, <span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Property Type"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Units by Planning Region"</span>, <span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Planning Region"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"lightcoral"</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Units by Type of Sale"</span>, <span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Type of Sale"</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Tenure</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"lightpink"</span>) <span class="sc">+</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Units by Tenure"</span>, <span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Tenure"</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram for Property_Age</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>plot5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> Property_Age)) <span class="sc">+</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Property Age"</span>, <span class="at">x =</span> <span class="st">"Property Age"</span>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots using operators</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>(plot1 <span class="sc">/</span> plot2) <span class="sc">|</span> (plot3 <span class="sc">/</span> plot4) <span class="sc">|</span> plot5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+<p>Taking the above at face value, the possible combination of preferences of buyers in the 5 property classifications can be inferred, as follows.</p>
+<ul>
+<li><p>For Property Type, Condominiums, followed by Apartments and Executive Condominiums are seems to be more preferred.</p></li>
+<li><p>For Planning Region, the Central Region, followed by Western and North Eastern Regions are preferred.</p></li>
+<li><p>For Type of Sale, Resale is most preferred followed by New Sale</p></li>
+<li><p>For Tenure, Leasehold is preferred over 999yrs/freehold</p></li>
+<li><p>For Property Age, newer properties are preferred over older properties.</p></li>
+</ul>
+<p>While the above inferences could be made, it does not equate to a causality relationship between these individual variables and unit sales, as there could be multiple other confounding variables that explains the one or more of the observations.</p>
+<ul>
+<li><p>For example, the overall property price and hence affordability could be an underlying reason that these preferences are surfacing, which could relate to property type, type of sale and tenure, where the most preferred options tend to align with the most affordable private properties in Singapore as well.</p></li>
+<li><p>Another confounding variable could be supply or availability of such categories of properties for sale, which could relate to the property type, type of sale and tenure, since the most preferred options are also the most abundant categories of private properties in Singapore.</p></li>
+</ul>
 </section>
 <section id="data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters">Data Visualisation 2: Prevalence of distribution patterns over past quarters</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign quarters based on date ranges</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm <span class="ot">&lt;-</span> Realis_merged_trfm <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Quarter =</span> <span class="fu">case_when</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(<span class="fu">month</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>), <span class="dv">1</span>, <span class="dv">3</span>) <span class="sc">&amp;</span> <span class="fu">year</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>) <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(<span class="fu">month</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>), <span class="dv">4</span>, <span class="dv">6</span>) <span class="sc">&amp;</span> <span class="fu">year</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>) <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(<span class="fu">month</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>), <span class="dv">7</span>, <span class="dv">9</span>) <span class="sc">&amp;</span> <span class="fu">year</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>) <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(<span class="fu">month</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>), <span class="dv">10</span>, <span class="dv">12</span>) <span class="sc">&amp;</span> <span class="fu">year</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>) <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(<span class="fu">month</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>), <span class="dv">1</span>, <span class="dv">3</span>) <span class="sc">&amp;</span> <span class="fu">year</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>) <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_integer_</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>Realis_merged_trfm<span class="sc">$</span>Quarter <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(Realis_merged_trfm<span class="sc">$</span>Quarter)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create ridge plot</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>plot6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis_merged_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> Quarter)) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Unit Price ($ PSF) by Quarter"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Quarter"</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>plot7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis_merged_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Property_Age</span><span class="st">`</span>, <span class="at">y =</span> Quarter)) <span class="sc">+</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Property Age by Quarter"</span>,</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Property Age"</span>, <span class="at">y =</span> <span class="st">"Quarter"</span>)</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>plot8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis_merged_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="at">y =</span> Quarter)) <span class="sc">+</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Sale Date by Quarter"</span>,</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sale Date"</span>, <span class="at">y =</span> <span class="st">"Quarter"</span>)</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots using operators</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>plot6<span class="sc">/</span>plot7<span class="sc">/</span>plot8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From the plots above, broad similarities can be observed across the quarters, elaborated as follows.</p>
+<ul>
+<li><p>For Unit Price (PSF), all quarters displayed a right skew in the distribution of sales, with the peaks notably aligned at around $1,300/SQFT. This suggests that the PSF for private property sales transaction had maintained fairly consistent over the 5 quarters, with some slight deviation.</p></li>
+<li><p>For Property age, all quarters displayed a right skew in the distribution of sales, with the peaks notably aligned close to 0. This suggests that across the 5 quarters, preferences for newer properties also maintained as a consistent trend.</p></li>
+</ul>
+<p>On the other hand, there were notable differences for sales distribution over time, where by peaks were observed at random parts of each of the 5 quarters. A closer look at the timing of the peaks and comparing with external data sources, it is found that these peaks in fact align with the 1st 2 weekends of new project launches. Rather than seasonal, the trend in sales peaks are most significantly driven by new project launches.</p>
 </section>
 <section id="data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors">Data Visualisation 3: Correlation between price per area and potential interacting factors</h2>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plot9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Property Type"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plot10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Planning Region"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plot11 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Tenure</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Tenure"</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>plot12 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Property_Age</span><span class="st">`</span>)) <span class="sc">+</span>  <span class="co"># Corrected the aes function</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Property Age"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] "Unit Price ($ PSF)"
+
+$y
+[1] "Property Age"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plot13 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Realis24Q1_trfm, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Transacted Price ($)</span><span class="st">`</span>)) <span class="sc">+</span>  <span class="co"># Corrected the aes function</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y =</span> <span class="st">"Transacted Price ($)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] "Unit Price ($ PSF)"
+
+$y
+[1] "Transacted Price ($)"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots using operators</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plot9 <span class="sc">/</span> plot10 <span class="sc">/</span> plot11 <span class="sc">/</span> plot12 <span class="sc">/</span> plot13 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+<p>Based on the above plots, there are some visible similarities and also relative rankings for Unit Prices (in PSF) between the different categories of private properties.</p>
+<ul>
+<li><p>For Property Type, Terrace, Semi-detached, Detached and Condominiums seem to have very similar means at around $1,700/PSF, whereas Apartments have the notably highest mean than the rest, and Executive Condominiums seems to have the lowest. While the observed for executive condominium is within expectation, since it did afterall start out at a cheaper price as part of the governments efforts to meet the masstige market needs, the observations for the rest bring an interesting insight, and is worth exploring further beyond this study.</p></li>
+<li><p>For Planning Region, interestingly, the rankings are exactly the same as that of the unit sales, which supports the possibility that this ranking could perhaps be indicative of the a strong preference for location of private properties among buyers in the first quarter of 2024.</p></li>
+<li><p>For Tenure, the observation brings no surprise that 999yrs/freehold is more expensive in Unit Price as compared to leasehold, which is opposite of the rankings for unit sales.</p></li>
+<li><p>For Property Age, the scatter plot and smoothened curve seems to suggest that there is at most a weak linearity relationship between property age and unit Price.</p></li>
+<li><p>For Transacted prices, the scatter plot and smoothened curve similarly seems to suggest that there is at most a weak linearity relationship between Transacted prices and unit Price.</p></li>
+</ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>https://quarto.org/</li>
+<li>https://lubridate.tidyverse.org/</li>
+<li>https://www.ura.gov.sg/</li>
+<li>https://r4va.netlify.app/</li>
+</ul>
 
 
 </section>
