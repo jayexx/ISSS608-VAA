@@ -10,16 +10,21 @@ execute:
   freeze: true
 ---
 
-
 ## Introduction
 
-There are two major residential property market in Singapore, namely public and private housing. Public housing aims to meet the basic need of the general public with monthly household income less than or equal to S$14,000. For families with monthly household income more than S$14,000, they need to turn to the private residential market.
+The private residential market in Singapore is a dynamic landscape, influenced by intricate socioeconomic factors and market trends. Separate from public housing, this sector has a unique set of policies and caters to a different market segment that comprises households with monthly incomes exceeding S\$14,000, which includes not only Singaporean but also foreign buyers. Understanding this market's nuances is crucial for both policymakers and potential market participants, whom are potential clients and consumers of our media company.
 
-
+This study would thus delve into the private residential market transactions in Singapore during the first quarter of 2024 and its relations to past quarters. Through data visualisation and analytics, this study would scrutinize market trends & patterns, geographical distributions and other potential interacting factors, aiming to unravel its complexities and provide insights on behaviour of Singapore's private residential market and sub markets.
 
 ## Objectives
 
-Assuming the role of a graphical editor of a median company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.
+The key objective of this study are to leverage on visual analytics in the following:
+
+-   Data Visualisation 1: To explore the distribution of unit sales over of property classification variables
+-   Data Visualisation 2: To discover the prevalence of these distribution patterns over the past quarters
+-   Data Visualisation 3: To estimate the correlation between transacted price per area and potential interacting factors
+
+Assuming the role of a graphical editor of a media company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.
 
 The write-up of the take-home exercise should include but not limited to the followings:
 
@@ -27,23 +32,260 @@ A reproducible description of the procedures used to prepare the analytical visu
 
 A write-up of not more than 150 words per each data visualisation, describing and discussing the patterns and/or trends reveal by each visualisation prepared.
 
-The key objectives of this exercise are:
-
--   To perform geovisualisation and analysis of Origin-Destination flows of passenger trips
--   To perform Spatial Interaction Modelling for Origin-Destination flows of passenger trips
-
 ## Getting Started
 
 The code chunk below load the following libraries:
 
 -   tidyverse: an amalgamation of libraries for data handling (including ggplot2, dplyr, tidyr, readr, tibble)
--   knitr: for creating html table
--   reshape2: for reshaping functions
--   stplanr:
--   spdep:
--   sfdep: for creating an sf and tidyverse friendly interface as well as for introducing new functionality that is not present in spdep
--   plotly: for interactive plots
+-   knitr: for creating dynamic html tables/reports
+-   ggridges: extension of ggplot2 designed for plotting ridgeline plots
+-   ggdist: extension of ggplot2 designed for visualising distribution and uncertainty,
+-   colorspace: provides a broad toolbox for selecting individual colors or color palettes, manipulating these colors, and employing them in various kinds of visualisations.
+-   ggrepel: provides geoms for ggplot2 to repel overlapping text labels.
+-   ggthemes: provides additional themes, geoms, and scales for ggplot package
+-   hrbrthemes: provides typography-centric themes and theme components for ggplot package
+-   patchwork: preparing composite figure created using ggplot package
+-   lubridate: for wrangling of date-time data
 
 ```{r}
-pacman::p_load(tmap, sf, sp, tidyverse, knitr,  reshape2, stplanr, performance, DT, ggpubr) 
+pacman::p_load(tidyverse, knitr, ggridges, ggdist, colorspace, ggrepel, ggthemes, hrbrthemes, patchwork, lubridate) 
 ```
+
+## Data Preparation
+
+The main dataset, extracted from URA Realis database, contains the private residential sales transactions in Singapore in the first quarter of 2024 (2024 Q1). In addition, this study will also perform comparisons with the preceding 4 quarters, which is in fact 2023 Q1-Q4, similarly extracted from the URA Realis database.
+
+### Importing the data
+
+The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+
+```{r}
+Realis24Q1 <- read_csv("data/ResidentialTrx2024q1.csv")
+Realis23Q4 <- read_csv("data/ResidentialTrx2023q4.csv")
+Realis23Q3 <- read_csv("data/ResidentialTrx2023q3.csv")
+Realis23Q2 <- read_csv("data/ResidentialTrx2023q2.csv")
+Realis23Q1 <- read_csv("data/ResidentialTrx2023Q1.csv")
+```
+
+```{R}
+Realis_merged <- rbind(Realis24Q1, Realis23Q4, Realis23Q3, Realis23Q2, Realis23Q1)
+```
+
+#### Data Variables
+
+To get a better understanding of the variables in the original dataset, the glimpse() function is used in the following code chunks.
+
+```{R}
+glimpse(Realis24Q1)
+```
+
+```{R}
+glimpse(Realis_merged)
+```
+
+Based on the output above, the both the 2024 Q1 and merged datasets have a total of 21 variables, as well as 4.9k and 26.8k rows respectively.
+
+### Data Cleaning
+
+Before data transformation, the cleanliness of the data set is first ascertained by checking for missing and duplicate data.
+
+#### Missing Data
+
+Based on the output from Glimpse(), it is noted that there were missing values denoted by "-" for variables such as Nett Price, hence, these values are first converted to NA before we check for NA values as a whole. Noting that there are valid values such as dates that also contain "-" and multibyte values such as ENCHANTe\~ in the project name col, the code uses regex to filter for "-" values instead.
+
+colSums() and is.NA() functions are then used to search for missing values as a whole for the 2024 Q1 dataset.
+
+```{R}
+#| warning: false
+
+#Convert "-" values with no characters before and after to NA
+Realis24Q1 <- Realis24Q1 %>%
+  mutate_all(~ ifelse(grepl("^-$", .), NA, .))
+
+#Find the number of missing values for each col
+colSums(is.na(Realis24Q1))
+```
+
+The same step is repeated for the merged data set in the code chunk below.
+
+```{R}
+#| warning: false
+
+#Convert "-" values with no characters before and after to NA
+Realis_merged <- Realis_merged %>%
+  mutate_all(~ ifelse(grepl("^-$", .), NA, .))
+
+#Find the number of missing values for each col
+colSums(is.na(Realis_merged))
+```
+
+From the above, the 2 variables of Nett Price (\$) and Completion date contain missing values.
+
+#### Check for duplicates
+
+Using duplicated(), duplicate values in the 2024 Q1 data set of are identified and extracted in the following code chunk.
+
+```{R}
+Realis24Q1[duplicated(Realis24Q1), ]
+```
+
+The same step is repeated with the merged data set.
+
+```{R}
+Realis_merged[duplicated(Realis_merged), ]
+```
+
+From the above, there were no duplicates found.
+
+#### Check for outliers
+
+As a pre-cursor to visualise the distribution of unit sales and correlation of property classification factors with Unit Price (PSF), a univariate analysis is done using a box plot to identify the existence of outliers in both dependent variables - (1) No. of Units and (2) Unit Price (PSF) as follows.
+
+1.  No. of units
+
+::: panel-tabset
+### Realis 2024 Q1 dataset
+```{R}
+#| code-fold: true
+
+# Calculate frequency counts for each value of "Number of Units"
+freq_counts <- Realis24Q1 %>%
+  count(`Number of Units`)
+
+# Plot the histogram and Display frequency counts as text
+ggplot(data = Realis24Q1, aes(x = `Number of Units`)) +
+  geom_histogram() +
+  geom_text(data = freq_counts, aes(label = n, y = n), vjust = -0.5) +
+  labs(x = "Number of Units", y = "Frequency")
+```
+
+### Realis merged dataset
+
+```{R}
+#| code-fold: true
+
+# Calculate frequency counts for each value of "Number of Units"
+freq_counts <- Realis_merged %>%
+  count(`Number of Units`)
+
+# Plot the histogram and Display frequency counts as text
+ggplot(data = Realis_merged, aes(x = `Number of Units`)) +
+  geom_histogram() +
+  geom_text(data = freq_counts, aes(label = n, y = n), vjust = -0.5) +
+  labs(x = "Number of Units", y = "Frequency")
+```
+:::
+
+From the above, the data is extremely concentrated at 1 unit per transaction, with only a very small minority of less than 1% of the units that belonged to multiple-unit transactions.
+
+2.  Unit Price (PSF)
+
+::: panel-tabset
+### Realis 2024 Q1 dataset
+```{R}
+#| code-fold: true
+
+# Plot the box plot
+ggplot(data = Realis24Q1, aes(x = `Unit Price ($ PSF)`, y=" ")) +
+  geom_boxplot() +
+  labs(x = "Unit Price ($ PSF)", y="Realis 2024 Q1")
+```
+
+### Realis merged dataset
+
+```{R}
+#| code-fold: true
+
+# Plot the box plot
+ggplot(data = Realis_merged, aes(x = `Unit Price ($ PSF)`, y=" ")) +
+  geom_boxplot() +
+  labs(x = "Unit Price ($ PSF)", y="Realis merged")
+```
+:::
+
+From the above, the outliers are not particularly distinct trailing out from the right tail of the box plot.
+
+### Data Transformation
+
+Based on the findings above, the significance of each variable, the conclusions drawn and transformations required are summarised as follows.
+
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| S/N   | Variable                    | Data Type | Description                                                                                                                         | Remarks                                                                                                                                                                                                                                              |
++=======+=============================+===========+=====================================================================================================================================+======================================================================================================================================================================================================================================================+
+| 1     | Project Name                | chr       | Private Residential Development Project Name                                                                                        | No missing values suggests that all property transactions in the data set belong to a private project development                                                                                                                                    |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2     | Transacted Price (\$)       | num       | Transacted Property Sale Price                                                                                                      | Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.                                                                                  |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3     | Area (SQFT)                 | num       | Property Floor Area (aka Unit Size) in SQFT                                                                                         | Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.                                                                                  |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4     | Unit Price (\$ PSF)         | num       | Sale Price per Floor Area in SQFT                                                                                                   | PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data Visualisation 3.                                                                                                                                           |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 5     | Sale Date                   | chr       | Date of Sales Transaction                                                                                                           | Sale date will be required for Data Visualisation 2 to provide granularity on time-wise trends across the quarters.                                                                                                                                  |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     | Data type will need to be changed to Date instead of chr.                                                                                                                                                                                            |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 6     | Address                     | chr       | Detailed line of address                                                                                                            | Address is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.                                                                                                                     |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 7     | Type of Sale                | chr       | Differentiates between                                                                                                              | Type of sale will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3                                                                                                                 |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   sales of a new property (directly from the developer)                                                                           |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   secondhand sales of unbuilt property (aka subsale)                                                                              |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   resale of existing property                                                                                                     |                                                                                                                                                                                                                                                      |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 8     | Type of Area                | chr       | Differentiates whether the land under the property is:                                                                              | Type of Area is closely related to property type, but is not selected as the preferred variable to be used in this study.                                                                                                                            |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   shared in a development project (strata)                                                                                        |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   solely owned by the property owner                                                                                              |                                                                                                                                                                                                                                                      |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 9     | Area (SQM)                  | num       | Property Floor Area (aka Unit Size) in SQM                                                                                          | Since price is already known to be strongly correlated to Area, Price per Area will potentially provide greater insights to multiple stakeholders.                                                                                                   |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 10    | Unit Price (\$ PSM)         | num       | Sale Price per Floor Area in SQM                                                                                                    | PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data visualisation 3.                                                                                                                                           |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 11    | Nett Price(\$)              | chr       | Price taking away officially recorded discounts and grants by URA                                                                   | Missing Values found for this variable in majority of rows, and since it has a similar purpose as transaction price, the latter will be used instead.                                                                                                |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 12    | Property Type               | chr       | Differentiates the property type into:                                                                                              | Property Type will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3                                                                                                                |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   Condominium                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   Terrace                                                                                                                         |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   Semi-detached                                                                                                                   |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           | -   Detached                                                                                                                        |                                                                                                                                                                                                                                                      |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 13    | Number of Units             | num       | Number of units sold in the single transaction                                                                                      |                                                                                                                                                                                                                                                      |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 14    | Tenure                      | chr       | Tenure period granted to the property owner over the land starting from the date of completion                                      | Tenure will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3                                                                                                                       |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 15    | Completion Date             | chr       | Year when the first building project is deemed completed upon grant of the tenure of the land.                                      | Missing values found for this variable in minority of rows. The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3, |
+|       |                             |           |                                                                                                                                     |                                                                                                                                                                                                                                                      |
+|       |                             |           |                                                                                                                                     | Hence data transformation is required to remove rows with missing values, derive property age with 2024 as a reference point, and replace uncompleted properties as 0 in age.                                                                        |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 16    | Purchaser Address Indicator | chr       | Type of residence of the purchaser's address which he/she need not necessarily own                                                  | This could be a variable                                                                                                                                                                                                                             |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 17    | Postal Code                 | chr       | Geographical code which is unique to the building address of transacted property                                                    | Postal Code is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.                                                                                                                 |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 18    | Postal District             | chr       | Geographical code which is unique to the postal district of transacted property, total of 28 districts in Singapore                 | Postal District is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.                                                                                                             |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 19    | Postal Sector               | chr       | Geographical code unique to postal sector of transacted property, which is a sub area of district, total of 81 sectors in Singapore | Postal Sector is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.                                                                                                               |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 20    | Planning Region             | chr       | Geographical region of transacted property, total of 5 regions - Central, North, North East, East and West.                         | Planning Region is the least complex amongst the geographical variables, and hence is selected as an ideal property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3                             |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21    | Planning Area               | chr       | Name of geographical area of transacted property, total of 55 areas in Singapore                                                    | Planning Area is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.                                                                                                               |
++-------+-----------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+
+
+## Data Visualisation 1: Distribution of unit sales over of property classification variables
+
+## Data Visualisation 2: Prevalence of distribution patterns over past quarters
+
+## Data Visualisation 3: Correlation between price per area and potential interacting factors
+
+## Conclusion
+
+## References

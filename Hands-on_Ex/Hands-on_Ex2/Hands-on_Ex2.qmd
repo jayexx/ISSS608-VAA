@@ -20,7 +20,10 @@ control the placement of annotation on a graph by using functions provided in gg
 
 The code chunk below installs and launches the tidyverse package into R environment
 
-ggrepel: an R package provides geoms for ggplot2 to repel overlapping text labels. ggthemes: an R package provides some extra themes, geoms, and scales for 'ggplot2'. hrbrthemes: an R package provides typography-centric themes and theme components for ggplot2. patchwork: an R package for preparing composite figure created using ggplot2.
+-   ggrepel: an R package provides geoms for ggplot2 to repel overlapping text labels. 
+-   ggthemes: an R package provides some extra themes, geoms, and scales for 'ggplot2'. 
+-   hrbrthemes: an R package provides typography-centric themes and theme components for ggplot2. 
+-   patchwork: an R package for preparing composite figure created using ggplot2.
 
 ```{r}
 pacman:: p_load(ggrepel, patchwork, 

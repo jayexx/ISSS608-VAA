@@ -129,6 +129,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex2/Hands-on_Ex2.html" rel="" target="">
  <span class="dropdown-text">Hands-on Ex 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex3/Hands-on_Ex3.html" rel="" target="">
+ <span class="dropdown-text">Hands-on Ex 3</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -139,6 +143,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex1/In-class_Ex1.html" rel="" target="">
  <span class="dropdown-text">In-class Ex 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex2/In-class_Ex2.html" rel="" target="">
+ <span class="dropdown-text">In-class Ex 2</span></a>
   </li>  
     </ul>
   </li>
@@ -182,6 +190,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#importing-the-data" id="toc-importing-the-data" class="nav-link" data-scroll-target="#importing-the-data">Importing the data</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation">Data Transformation</a></li>
+  </ul></li>
+  <li><a href="#data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" id="toc-data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" class="nav-link" data-scroll-target="#data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables">Data Visualisation 1: Distribution of unit sales over of property classification variables</a></li>
+  <li><a href="#data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" id="toc-data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" class="nav-link" data-scroll-target="#data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters">Data Visualisation 2: Prevalence of distribution patterns over past quarters</a></li>
+  <li><a href="#data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" id="toc-data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" class="nav-link" data-scroll-target="#data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors">Data Visualisation 3: Correlation between price per area and potential interacting factors</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -214,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 20, 2024</p>
+      <p class="date-modified">April 27, 2024</p>
     </div>
   </div>
     
@@ -225,35 +244,517 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>There are two major residential property market in Singapore, namely public and private housing. Public housing aims to meet the basic need of the general public with monthly household income less than or equal to S$14,000. For families with monthly household income more than S$14,000, they need to turn to the private residential market.</p>
+<p>The private residential market in Singapore is a dynamic landscape, influenced by intricate socioeconomic factors and market trends. Separate from public housing, this sector has a unique set of policies and caters to a different market segment that comprises households with monthly incomes exceeding S$14,000, which includes not only Singaporean but also foreign buyers. Understanding this market’s nuances is crucial for both policymakers and potential market participants, whom are potential clients and consumers of our media company.</p>
+<p>This study would thus delve into the private residential market transactions in Singapore during the first quarter of 2024 and its relations to past quarters. Through data visualisation and analytics, this study would scrutinize market trends &amp; patterns, geographical distributions and other potential interacting factors, aiming to unravel its complexities and provide insights on behaviour of Singapore’s private residential market and sub markets.</p>
 </section>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
-<p>Assuming the role of a graphical editor of a median company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.</p>
+<p>The key objective of this study are to leverage on visual analytics in the following:</p>
+<ul>
+<li>Data Visualisation 1: To explore the distribution of unit sales over of property classification variables</li>
+<li>Data Visualisation 2: To discover the prevalence of these distribution patterns over the past quarters</li>
+<li>Data Visualisation 3: To estimate the correlation between transacted price per area and potential interacting factors</li>
+</ul>
+<p>Assuming the role of a graphical editor of a media company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.</p>
 <p>The write-up of the take-home exercise should include but not limited to the followings:</p>
 <p>A reproducible description of the procedures used to prepare the analytical visualisation. Please refer to the senior submission I shared below.</p>
 <p>A write-up of not more than 150 words per each data visualisation, describing and discussing the patterns and/or trends reveal by each visualisation prepared.</p>
-<p>The key objectives of this exercise are:</p>
-<ul>
-<li>To perform geovisualisation and analysis of Origin-Destination flows of passenger trips</li>
-<li>To perform Spatial Interaction Modelling for Origin-Destination flows of passenger trips</li>
-</ul>
 </section>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>The code chunk below load the following libraries:</p>
 <ul>
-<li>tidyverse: an amalgamation of libraries for data handling (including readr, tidyr, dplyr, ggplot2)</li>
-<li>knitr: for creating html table</li>
-<li>reshape2: for reshaping functions</li>
-<li>stplanr:</li>
-<li>spdep:</li>
-<li>sfdep: for creating an sf and tidyverse friendly interface as well as for introducing new functionality that is not present in spdep</li>
-<li>plotly: for interactive plots</li>
+<li>tidyverse: an amalgamation of libraries for data handling (including ggplot2, dplyr, tidyr, readr, tibble)</li>
+<li>knitr: for creating dynamic html tables/reports</li>
+<li>ggridges: extension of ggplot2 designed for plotting ridgeline plots</li>
+<li>ggdist: extension of ggplot2 designed for visualising distribution and uncertainty,</li>
+<li>colorspace: provides a broad toolbox for selecting individual colors or color palettes, manipulating these colors, and employing them in various kinds of visualisations.</li>
+<li>ggrepel: provides geoms for ggplot2 to repel overlapping text labels.</li>
+<li>ggthemes: provides additional themes, geoms, and scales for ggplot package</li>
+<li>hrbrthemes: provides typography-centric themes and theme components for ggplot package</li>
+<li>patchwork: preparing composite figure created using ggplot package</li>
+<li>lubridate: for wrangling of date-time data</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tmap, sf, sp, tidyverse, knitr,  reshape2, stplanr, performance, DT, ggpubr) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, knitr, ggridges, ggdist, colorspace, ggrepel, ggthemes, hrbrthemes, patchwork, lubridate) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>The main dataset, extracted from URA Realis database, contains the private residential sales transactions in Singapore in the first quarter of 2024 (2024 Q1). In addition, this study will also perform comparisons with the preceding 4 quarters, which is in fact 2023 Q1-Q4, similarly extracted from the URA Realis database.</p>
+<section id="importing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="importing-the-data">Importing the data</h3>
+<p>The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Realis24Q1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2024q1.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Realis23Q4 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2023q4.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Realis23Q3 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2023q3.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Realis23Q2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2023q2.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Realis23Q1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2023Q1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Realis_merged <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Realis24Q1, Realis23Q4, Realis23Q3, Realis23Q2, Realis23Q1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-variables" class="level4">
+<h4 class="anchored" data-anchor-id="data-variables">Data Variables</h4>
+<p>To get a better understanding of the variables in the original dataset, the glimpse() function is used in the following code chunks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Realis24Q1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4,902
+Columns: 21
+$ `Project Name`                &lt;chr&gt; "THE LANDMARK", "POLLEN COLLECTION", "SK…
+$ `Transacted Price ($)`        &lt;dbl&gt; 2726888, 3850000, 2346000, 2190000, 1954…
+$ `Area (SQFT)`                 &lt;dbl&gt; 1076.40, 1808.35, 1087.16, 807.30, 796.5…
+$ `Unit Price ($ PSF)`          &lt;dbl&gt; 2533, 2129, 2158, 2713, 2453, 2577, 838,…
+$ `Sale Date`                   &lt;chr&gt; "1-Jan-24", "1-Jan-24", "1-Jan-24", "1-J…
+$ Address                       &lt;chr&gt; "173 CHIN SWEE ROAD #22-11", "34 POLLEN …
+$ `Type of Sale`                &lt;chr&gt; "New Sale", "New Sale", "New Sale", "New…
+$ `Type of Area`                &lt;chr&gt; "Strata", "Land", "Strata", "Strata", "S…
+$ `Area (SQM)`                  &lt;dbl&gt; 100.0, 168.0, 101.0, 75.0, 74.0, 123.0, …
+$ `Unit Price ($ PSM)`          &lt;dbl&gt; 27269, 22917, 23228, 29200, 26405, 27741…
+$ `Nett Price($)`               &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", …
+$ `Property Type`               &lt;chr&gt; "Condominium", "Terrace House", "Apartme…
+$ `Number of Units`             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ Tenure                        &lt;chr&gt; "99 yrs from 28/08/2020", "99 yrs from 0…
+$ `Completion Date`             &lt;chr&gt; "Uncompleted", "Uncompleted", "Uncomplet…
+$ `Purchaser Address Indicator` &lt;chr&gt; "Private", "N.A", "HDB", "N.A", "Private…
+$ `Postal Code`                 &lt;chr&gt; "169878", "807233", "469657", "118992", …
+$ `Postal District`             &lt;chr&gt; "03", "28", "16", "05", "21", "21", "28"…
+$ `Postal Sector`               &lt;chr&gt; "16", "80", "46", "11", "59", "58", "79"…
+$ `Planning Region`             &lt;chr&gt; "Central Region", "North East Region", "…
+$ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Queenst…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Realis_merged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 26,806
+Columns: 21
+$ `Project Name`                &lt;chr&gt; "THE LANDMARK", "POLLEN COLLECTION", "SK…
+$ `Transacted Price ($)`        &lt;dbl&gt; 2726888, 3850000, 2346000, 2190000, 1954…
+$ `Area (SQFT)`                 &lt;dbl&gt; 1076.40, 1808.35, 1087.16, 807.30, 796.5…
+$ `Unit Price ($ PSF)`          &lt;dbl&gt; 2533, 2129, 2158, 2713, 2453, 2577, 838,…
+$ `Sale Date`                   &lt;chr&gt; "1-Jan-24", "1-Jan-24", "1-Jan-24", "1-J…
+$ Address                       &lt;chr&gt; "173 CHIN SWEE ROAD #22-11", "34 POLLEN …
+$ `Type of Sale`                &lt;chr&gt; "New Sale", "New Sale", "New Sale", "New…
+$ `Type of Area`                &lt;chr&gt; "Strata", "Land", "Strata", "Strata", "S…
+$ `Area (SQM)`                  &lt;dbl&gt; 100.0, 168.0, 101.0, 75.0, 74.0, 123.0, …
+$ `Unit Price ($ PSM)`          &lt;dbl&gt; 27269, 22917, 23228, 29200, 26405, 27741…
+$ `Nett Price($)`               &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", …
+$ `Property Type`               &lt;chr&gt; "Condominium", "Terrace House", "Apartme…
+$ `Number of Units`             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ Tenure                        &lt;chr&gt; "99 yrs from 28/08/2020", "99 yrs from 0…
+$ `Completion Date`             &lt;chr&gt; "Uncompleted", "Uncompleted", "Uncomplet…
+$ `Purchaser Address Indicator` &lt;chr&gt; "Private", "N.A", "HDB", "N.A", "Private…
+$ `Postal Code`                 &lt;chr&gt; "169878", "807233", "469657", "118992", …
+$ `Postal District`             &lt;chr&gt; "03", "28", "16", "05", "21", "21", "28"…
+$ `Postal Sector`               &lt;chr&gt; "16", "80", "46", "11", "59", "58", "79"…
+$ `Planning Region`             &lt;chr&gt; "Central Region", "North East Region", "…
+$ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Queenst…</code></pre>
+</div>
+</div>
+<p>Based on the output above, the both the 2024 Q1 and merged datasets have a total of 21 variables, as well as 4.9k and 26.8k rows respectively.</p>
+</section>
+</section>
+<section id="data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h3>
+<p>Before data transformation, the cleanliness of the data set is first ascertained by checking for missing and duplicate data.</p>
+<section id="missing-data" class="level4">
+<h4 class="anchored" data-anchor-id="missing-data">Missing Data</h4>
+<p>Based on the output from Glimpse(), it is noted that there were missing values denoted by “-” for variables such as Nett Price, hence, these values are first converted to NA before we check for NA values as a whole. Noting that there are valid values such as dates that also contain “-” and multibyte values such as ENCHANTe~ in the project name col, the code uses regex to filter for “-” values instead.</p>
+<p>colSums() and is.NA() functions are then used to search for missing values as a whole for the 2024 Q1 dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert "-" values with no characters before and after to NA</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Realis24Q1 <span class="ot">&lt;-</span> Realis24Q1 <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"^-$"</span>, .), <span class="cn">NA</span>, .))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the number of missing values for each col</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(Realis24Q1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Project Name        Transacted Price ($) 
+                          0                           0 
+                Area (SQFT)          Unit Price ($ PSF) 
+                          0                           0 
+                  Sale Date                     Address 
+                          0                           0 
+               Type of Sale                Type of Area 
+                          0                           0 
+                 Area (SQM)          Unit Price ($ PSM) 
+                          0                           0 
+              Nett Price($)               Property Type 
+                       4896                           0 
+            Number of Units                      Tenure 
+                          0                           0 
+            Completion Date Purchaser Address Indicator 
+                        118                           0 
+                Postal Code             Postal District 
+                          0                           0 
+              Postal Sector             Planning Region 
+                          0                           0 
+              Planning Area 
+                          0 </code></pre>
+</div>
+</div>
+<p>The same step is repeated for the merged data set in the code chunk below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert "-" values with no characters before and after to NA</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Realis_merged <span class="ot">&lt;-</span> Realis_merged <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"^-$"</span>, .), <span class="cn">NA</span>, .))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the number of missing values for each col</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(Realis_merged))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Project Name        Transacted Price ($) 
+                          0                           0 
+                Area (SQFT)          Unit Price ($ PSF) 
+                          0                           0 
+                  Sale Date                     Address 
+                          0                           0 
+               Type of Sale                Type of Area 
+                          0                           0 
+                 Area (SQM)          Unit Price ($ PSM) 
+                          6                           0 
+              Nett Price($)               Property Type 
+                      26770                           0 
+            Number of Units                      Tenure 
+                          0                           0 
+            Completion Date Purchaser Address Indicator 
+                        682                           0 
+                Postal Code             Postal District 
+                          0                           0 
+              Postal Sector             Planning Region 
+                          0                           0 
+              Planning Area 
+                          0 </code></pre>
+</div>
+</div>
+<p>From the above, the 2 variables of Nett Price ($) and Completion date contain missing values.</p>
+</section>
+<section id="check-for-duplicates" class="level4">
+<h4 class="anchored" data-anchor-id="check-for-duplicates">Check for duplicates</h4>
+<p>Using duplicated(), duplicate values in the 2024 Q1 data set of are identified and extracted in the following code chunk.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Realis24Q1[<span class="fu">duplicated</span>(Realis24Q1), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 21
+# ℹ 21 variables: Project Name &lt;chr&gt;, Transacted Price ($) &lt;dbl&gt;,
+#   Area (SQFT) &lt;dbl&gt;, Unit Price ($ PSF) &lt;dbl&gt;, Sale Date &lt;chr&gt;,
+#   Address &lt;chr&gt;, Type of Sale &lt;chr&gt;, Type of Area &lt;chr&gt;, Area (SQM) &lt;dbl&gt;,
+#   Unit Price ($ PSM) &lt;dbl&gt;, Nett Price($) &lt;chr&gt;, Property Type &lt;chr&gt;,
+#   Number of Units &lt;dbl&gt;, Tenure &lt;chr&gt;, Completion Date &lt;chr&gt;,
+#   Purchaser Address Indicator &lt;chr&gt;, Postal Code &lt;chr&gt;,
+#   Postal District &lt;chr&gt;, Postal Sector &lt;chr&gt;, Planning Region &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>The same step is repeated with the merged data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Realis_merged[<span class="fu">duplicated</span>(Realis_merged), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 21
+# ℹ 21 variables: Project Name &lt;chr&gt;, Transacted Price ($) &lt;dbl&gt;,
+#   Area (SQFT) &lt;dbl&gt;, Unit Price ($ PSF) &lt;dbl&gt;, Sale Date &lt;chr&gt;,
+#   Address &lt;chr&gt;, Type of Sale &lt;chr&gt;, Type of Area &lt;chr&gt;, Area (SQM) &lt;dbl&gt;,
+#   Unit Price ($ PSM) &lt;dbl&gt;, Nett Price($) &lt;chr&gt;, Property Type &lt;chr&gt;,
+#   Number of Units &lt;dbl&gt;, Tenure &lt;chr&gt;, Completion Date &lt;chr&gt;,
+#   Purchaser Address Indicator &lt;chr&gt;, Postal Code &lt;chr&gt;,
+#   Postal District &lt;chr&gt;, Postal Sector &lt;chr&gt;, Planning Region &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>From the above, there were no duplicates found.</p>
+</section>
+<section id="check-for-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="check-for-outliers">Check for outliers</h4>
+<p>As a pre-cursor to visualise the distribution of unit sales and correlation of property classification factors with Unit Price (PSF), a univariate analysis is done using a box plot to identify the existence of outliers in both dependent variables - (1) No.&nbsp;of Units and (2) Unit Price (PSF) as follows.</p>
+<ol type="1">
+<li>No.&nbsp;of units</li>
+</ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Realis 2024 Q1 dataset</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Realis merged dataset</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate frequency counts for each value of "Number of Units"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>freq_counts <span class="ot">&lt;-</span> Realis24Q1 <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the histogram and Display frequency counts as text</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Realis24Q1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> freq_counts, <span class="fu">aes</span>(<span class="at">label =</span> n, <span class="at">y =</span> n), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate frequency counts for each value of "Number of Units"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>freq_counts <span class="ot">&lt;-</span> Realis_merged <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the histogram and Display frequency counts as text</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Realis_merged, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> freq_counts, <span class="fu">aes</span>(<span class="at">label =</span> n, <span class="at">y =</span> n), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of Units"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>From the above, the data is extremely concentrated at 1 unit per transaction, with only a very small minority of less than 1% of the units that belonged to multiple-unit transactions.</p>
+<ol start="2" type="1">
+<li>Unit Price (PSF)</li>
+</ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Realis 2024 Q1 dataset</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Realis merged dataset</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the box plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Realis24Q1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y=</span><span class="st">" "</span>)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y=</span><span class="st">"Realis 2024 Q1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the box plot</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Realis_merged, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">y=</span><span class="st">" "</span>)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit Price ($ PSF)"</span>, <span class="at">y=</span><span class="st">"Realis merged"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>From the above, the outliers are not particularly distinct trailing out from the right tail of the box plot.</p>
+</section>
+</section>
+<section id="data-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="data-transformation">Data Transformation</h3>
+<p>Based on the findings above, the significance of each variable, the conclusions drawn and transformations required are summarised as follows.</p>
+<table class="table">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 30%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>S/N</th>
+<th>Variable</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Project Name</td>
+<td>chr</td>
+<td>Private Residential Development Project Name</td>
+<td>No missing values suggests that all property transactions in the data set belong to a private project development</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Transacted Price ($)</td>
+<td>num</td>
+<td>Transacted Property Sale Price</td>
+<td>Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Area (SQFT)</td>
+<td>num</td>
+<td>Property Floor Area (aka Unit Size) in SQFT</td>
+<td>Since price is already known to be strongly correlated to Area, Unit Price (aka Price per Area) will potentially provide greater insights to multiple stakeholders.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Unit Price ($ PSF)</td>
+<td>num</td>
+<td>Sale Price per Floor Area in SQFT</td>
+<td>PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data Visualisation 3.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Sale Date</td>
+<td>chr</td>
+<td>Date of Sales Transaction</td>
+<td><p>Sale date will be required for Data Visualisation 2 to provide granularity on time-wise trends across the quarters.</p>
+<p>Data type will need to be changed to Date instead of chr.</p></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Address</td>
+<td>chr</td>
+<td>Detailed line of address</td>
+<td>Address is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Type of Sale</td>
+<td>chr</td>
+<td><p>Differentiates between</p>
+<ul>
+<li><p>sales of a new property (directly from the developer)</p></li>
+<li><p>secondhand sales of unbuilt property (aka subsale)</p></li>
+<li><p>resale of existing property</p></li>
+</ul></td>
+<td>Type of sale will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Type of Area</td>
+<td>chr</td>
+<td><p>Differentiates whether the land under the property is:</p>
+<ul>
+<li><p>shared in a development project (strata)</p></li>
+<li><p>solely owned by the property owner</p></li>
+</ul></td>
+<td>Type of Area is closely related to property type, but is not selected as the preferred variable to be used in this study.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Area (SQM)</td>
+<td>num</td>
+<td>Property Floor Area (aka Unit Size) in SQM</td>
+<td>Since price is already known to be strongly correlated to Area, Price per Area will potentially provide greater insights to multiple stakeholders.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Unit Price ($ PSM)</td>
+<td>num</td>
+<td>Sale Price per Floor Area in SQM</td>
+<td>PSF is chosen over PSM as a indicator for Price per area as a dependent variable for Data visualisation 3.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Nett Price($)</td>
+<td>chr</td>
+<td>Price taking away officially recorded discounts and grants by URA</td>
+<td>Missing Values found for this variable in majority of rows, and since it has a similar purpose as transaction price, the latter will be used instead.</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Property Type</td>
+<td>chr</td>
+<td><p>Differentiates the property type into:</p>
+<ul>
+<li><p>Condominium</p></li>
+<li><p>Terrace</p></li>
+<li><p>Semi-detached</p></li>
+<li><p>Detached</p></li>
+</ul></td>
+<td>Property Type will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Number of Units</td>
+<td>num</td>
+<td>Number of units sold in the single transaction</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Tenure</td>
+<td>chr</td>
+<td>Tenure period granted to the property owner over the land starting from the date of completion</td>
+<td>Tenure will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>Completion Date</td>
+<td>chr</td>
+<td>Year when the first building project is deemed completed upon grant of the tenure of the land.</td>
+<td><p>Missing values found for this variable in minority of rows. The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3,</p>
+<p>Hence data transformation is required to remove rows with missing values, derive property age with 2024 as a reference point, and replace uncompleted properties as 0 in age.</p></td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>Purchaser Address Indicator</td>
+<td>chr</td>
+<td>Type of residence of the purchaser’s address which he/she need not necessarily own</td>
+<td>This could be a variable</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>Postal Code</td>
+<td>chr</td>
+<td>Geographical code which is unique to the building address of transacted property</td>
+<td>Postal Code is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>Postal District</td>
+<td>chr</td>
+<td>Geographical code which is unique to the postal district of transacted property, total of 28 districts in Singapore</td>
+<td>Postal District is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>Postal Sector</td>
+<td>chr</td>
+<td>Geographical code unique to postal sector of transacted property, which is a sub area of district, total of 81 sectors in Singapore</td>
+<td>Postal Sector is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>Planning Region</td>
+<td>chr</td>
+<td>Geographical region of transacted property, total of 5 regions - Central, North, North East, East and West.</td>
+<td>Planning Region is the least complex amongst the geographical variables, and hence is selected as an ideal property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>Planning Area</td>
+<td>chr</td>
+<td>Name of geographical area of transacted property, total of 55 areas in Singapore</td>
+<td>Planning Area is closely related to other geographical variables, but is not selected the preferred variable to be used in this study.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualisation-1-distribution-of-unit-sales-over-of-property-classification-variables">Data Visualisation 1: Distribution of unit sales over of property classification variables</h2>
+</section>
+<section id="data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualisation-2-prevalence-of-distribution-patterns-over-past-quarters">Data Visualisation 2: Prevalence of distribution patterns over past quarters</h2>
+</section>
+<section id="data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualisation-3-correlation-between-price-per-area-and-potential-interacting-factors">Data Visualisation 3: Correlation between price per area and potential interacting factors</h2>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 
 
 </section>
