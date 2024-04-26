@@ -26,13 +26,13 @@ pacman:: p_load(tidyverse, ggdist, ggridges,
 The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
 
 ```{r}
-exam_df <- read_csv("data/Exam_data.csv")
+exam <- read_csv("data/Exam_data.csv")
 ```
 
 ## Histogram
 
 ```{R}
-ggplot(data=exam_df, 
+ggplot(data=exam, 
        aes(x = ENGLISH)) +
   geom_histogram(
     color = "#1696d2",
@@ -42,7 +42,7 @@ ggplot(data=exam_df,
 ## Probability Density plot
 
 ```{R}
-ggplot(data=exam_df, 
+ggplot(data=exam, 
        aes(x = ENGLISH)) +
   geom_density(
     color = "#1696d2",
@@ -53,7 +53,7 @@ ggplot(data=exam_df,
 
 ## Alternative design
 
-```
+
 ggplot(data=exam_df, 
        aes(x = ENGLISH)) +
   geom_density(
@@ -77,6 +77,25 @@ ggplot(data=exam_df,
            x = mean_eng - 8,
            y = 0.04,
            label = paste)
+
+## Visualising Distribution with Ridgeline Plot
+
+```{R}
+ggplot(exam, 
+       aes(x = ENGLISH, 
+           y = CLASS,
+           fill = stat(x))) +
+  geom_density_ridges_gradient(
+    scale = 3,
+    rel_min_height = 0.01) +
+  scale_fill_viridis_c(name = "Temp. [F]",
+                       option = "C") +
+  scale_x_continuous(
+    name = "English grades",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = expansion(add = c(0.2, 2.6))) +
+  theme_ridges()
 ```
 
 
@@ -84,7 +103,5 @@ ggplot(data=exam_df,
 
 
 
-
-
-
+## Visualising Distribution with Raincloud Plot
 
