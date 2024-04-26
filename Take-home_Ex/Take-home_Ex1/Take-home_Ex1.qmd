@@ -24,14 +24,6 @@ The key objective of this study are to leverage on visual analytics in the follo
 -   Data Visualisation 2: To discover the prevalence of these distribution patterns over the past quarters
 -   Data Visualisation 3: To estimate the correlation between transacted price per area and potential interacting factors
 
-Assuming the role of a graphical editor of a media company, you are requested to prepare minimum two and maximum three data visualisation to reveal the private residential market and sub-markets of Singapore for the 1st quarter of 2024.
-
-The write-up of the take-home exercise should include but not limited to the followings:
-
-A reproducible description of the procedures used to prepare the analytical visualisation. Please refer to the senior submission I shared below.
-
-A write-up of not more than 150 words per each data visualisation, describing and discussing the patterns and/or trends reveal by each visualisation prepared.
-
 ## Getting Started
 
 The code chunk below load the following libraries:
