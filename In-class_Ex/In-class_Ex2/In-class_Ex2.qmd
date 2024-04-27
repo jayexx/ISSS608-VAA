@@ -90,7 +90,7 @@ ggplot(exam,
     scale = 3,
     rel_min_height = 0.01,
     bandwidth = 3.4,
-    fill = lighten("#7097BB", .3),
+    fill = colorspace::lighten("#7097BB", .3),
     color = "white"
   ) +
   scale_x_continuous(
