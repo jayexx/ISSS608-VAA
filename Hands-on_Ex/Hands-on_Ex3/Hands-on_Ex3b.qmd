@@ -9,3 +9,17 @@ execute:
   warning: false
   freeze: true
 ---
+
+# Programming Animated Statistical Graphics with R
+
+## Overview
+
+
+
+## Getting Started
+
+## Animated Data Vis
+
+## Animated Data Vis
+
+## References
