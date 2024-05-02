@@ -15,6 +15,12 @@ website:
         href: "Hands-on_Ex/Hands-on_Ex3/Hands-on_Ex3a.html"
       - text: "Hands-on Ex 3b"
         href: "Hands-on_Ex/Hands-on_Ex3/Hands-on_Ex3b.html"
+      - text: "Hands-on Ex 4a"
+        href: "Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4a.html"
+      - text: "Hands-on Ex 4b"
+        href: "Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4b.html"
+      - text: "Hands-on Ex 4c"
+        href: "Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4c.html"
     - text: "In-class Ex"
       menu:
       - text: "In-class Ex 1"

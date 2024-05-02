@@ -1,0 +1,23 @@
+---
+title: "Take-home Ex2"
+author: "Jayexx Low"
+date: "April 29, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+## Introduction
+
+## Getting Started
+
+## Importing the Data
+
+## Selected DataViz
+
+## Assessment
+
+## Recommended Makeover

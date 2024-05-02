@@ -1,0 +1,25 @@
+---
+title: "Hands-on Ex4c"
+author: "Jayexx Low"
+date: "April 29, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# Visual Statistical Analysis
+
+## Visual Statistical Analysis with GGstatsplot
+
+### Installing & loading required libraries
+
+### Importing data
+
+## Visualising Models with parameters package
+
+### Installing & loading required libraries
+
+### Importing data
