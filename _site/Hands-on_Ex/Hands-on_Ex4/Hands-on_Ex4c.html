@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -173,18 +207,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#visual-statistical-analysis" id="toc-visual-statistical-analysis" class="nav-link active" data-scroll-target="#visual-statistical-analysis">Visual Statistical Analysis</a>
+  <li><a href="#funnel-plots-for-fair-comparisons" id="toc-funnel-plots-for-fair-comparisons" class="nav-link active" data-scroll-target="#funnel-plots-for-fair-comparisons">Funnel Plots for Fair Comparisons</a>
   <ul class="collapse">
-  <li><a href="#visual-statistical-analysis-with-ggstatsplot" id="toc-visual-statistical-analysis-with-ggstatsplot" class="nav-link" data-scroll-target="#visual-statistical-analysis-with-ggstatsplot">Visual Statistical Analysis with GGstatsplot</a>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a>
   <ul class="collapse">
   <li><a href="#installing-loading-required-libraries" id="toc-installing-loading-required-libraries" class="nav-link" data-scroll-target="#installing-loading-required-libraries">Installing &amp; loading required libraries</a></li>
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing data</a></li>
   </ul></li>
-  <li><a href="#visualising-models-with-parameters-package" id="toc-visualising-models-with-parameters-package" class="nav-link" data-scroll-target="#visualising-models-with-parameters-package">Visualising Models with parameters package</a>
+  <li><a href="#funnelplotr-methods" id="toc-funnelplotr-methods" class="nav-link" data-scroll-target="#funnelplotr-methods">FunnelPlotR methods</a>
   <ul class="collapse">
-  <li><a href="#installing-loading-required-libraries-1" id="toc-installing-loading-required-libraries-1" class="nav-link" data-scroll-target="#installing-loading-required-libraries-1">Installing &amp; loading required libraries</a></li>
-  <li><a href="#importing-data-1" id="toc-importing-data-1" class="nav-link" data-scroll-target="#importing-data-1">Importing data</a></li>
+  <li><a href="#funnelplotr-methods-the-basic-plot" id="toc-funnelplotr-methods-the-basic-plot" class="nav-link" data-scroll-target="#funnelplotr-methods-the-basic-plot">FunnelPlotR methods: The basic plot</a></li>
+  <li><a href="#funnelplotr-methods-makeover-1" id="toc-funnelplotr-methods-makeover-1" class="nav-link" data-scroll-target="#funnelplotr-methods-makeover-1">FunnelPlotR methods: Makeover 1</a></li>
+  <li><a href="#funnelplotr-methods-makeover-2" id="toc-funnelplotr-methods-makeover-2" class="nav-link" data-scroll-target="#funnelplotr-methods-makeover-2">FunnelPlotR methods: Makeover 2</a></li>
   </ul></li>
+  <li><a href="#funnel-plot-for-fair-visual-comparison-ggplot2-methods" id="toc-funnel-plot-for-fair-visual-comparison-ggplot2-methods" class="nav-link" data-scroll-target="#funnel-plot-for-fair-visual-comparison-ggplot2-methods">Funnel Plot for Fair Visual Comparison: ggplot2 methods</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 2, 2024</p>
+      <p class="date-modified">May 3, 2024</p>
     </div>
   </div>
     
@@ -227,27 +270,139 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="visual-statistical-analysis" class="level1">
-<h1>Visual Statistical Analysis</h1>
-<section id="visual-statistical-analysis-with-ggstatsplot" class="level2">
-<h2 class="anchored" data-anchor-id="visual-statistical-analysis-with-ggstatsplot">Visual Statistical Analysis with GGstatsplot</h2>
+<section id="funnel-plots-for-fair-comparisons" class="level1">
+<h1>Funnel Plots for Fair Comparisons</h1>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <section id="installing-loading-required-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="installing-loading-required-libraries">Installing &amp; loading required libraries</h3>
+<p>In this exercise, four R packages will be used. They are:</p>
+<ul>
+<li>readr for importing csv into R.</li>
+<li>FunnelPlotR for creating funnel plot.</li>
+<li>ggplot2 for creating funnel plot manually.</li>
+<li>knitr for building static html table.</li>
+<li>plotly for creating interactive funnel plot.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, FunnelPlotR, plotly, knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="importing-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-data">Importing data</h3>
+<p>In this section, COVID-19_DKI_Jakarta will be used. The data was downloaded from Open Data Covid-19 Provinsi DKI Jakarta portal. For this hands-on exercise, we are going to compare the cumulative COVID-19 cases and death by sub-district (i.e.&nbsp;kelurahan) as at 31st July 2021, DKI Jakarta.</p>
+<p>The code chunk below imports the data into R and save it into a tibble data frame object called covid19.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>covid19 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/COVID-19_DKI_Jakarta.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="visualising-models-with-parameters-package" class="level2">
-<h2 class="anchored" data-anchor-id="visualising-models-with-parameters-package">Visualising Models with parameters package</h2>
-<section id="installing-loading-required-libraries-1" class="level3">
-<h3 class="anchored" data-anchor-id="installing-loading-required-libraries-1">Installing &amp; loading required libraries</h3>
+<section id="funnelplotr-methods" class="level2">
+<h2 class="anchored" data-anchor-id="funnelplotr-methods">FunnelPlotR methods</h2>
+<p>FunnelPlotR package uses ggplot to generate funnel plots. It requires a numerator (events of interest), denominator (population to be considered) and group. The key arguments selected for customisation are:</p>
+<p>limit: plot limits (95 or 99). label_outliers: to label outliers (true or false). Poisson_limits: to add Poisson limits to the plot. OD_adjust: to add overdispersed limits to the plot. xrange and yrange: to specify the range to display for axes, acts like a zoom function. Other aesthetic components such as graph title, axis labels etc.</p>
+<section id="funnelplotr-methods-the-basic-plot" class="level3">
+<h3 class="anchored" data-anchor-id="funnelplotr-methods-the-basic-plot">FunnelPlotR methods: The basic plot</h3>
+<p>The code chunk below plots a funnel plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel_plot</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.data =</span> covid19,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">numerator =</span> Positive,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">denominator =</span> Death,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">`</span><span class="at">Sub-district</span><span class="st">`</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex4c_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A funnel plot object with 267 points of which 0 are outliers. 
+Plot is adjusted for overdispersion. </code></pre>
+</div>
+</div>
+<p>Things to learn from the code chunk above.</p>
+<ul>
+<li>group in this function is different from the scatterplot. Here, it defines the level of the points to be plotted i.e.&nbsp;Sub-district, District or City. If City is chosen, there are only six data points.</li>
+<li>By default, data_typeargument is “SR”.</li>
+<li>limit: Plot limits, accepted values are: 95 or 99, corresponding to 95% or 99.8% quantiles of the distribution.</li>
+</ul>
 </section>
-<section id="importing-data-1" class="level3">
-<h3 class="anchored" data-anchor-id="importing-data-1">Importing data</h3>
+<section id="funnelplotr-methods-makeover-1" class="level3">
+<h3 class="anchored" data-anchor-id="funnelplotr-methods-makeover-1">FunnelPlotR methods: Makeover 1</h3>
+<p>The code chunk below plots a funnel plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel_plot</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.data =</span> covid19,  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">numerator =</span> Death,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">denominator =</span> Positive,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">`</span><span class="at">Sub-district</span><span class="st">`</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_type =</span> <span class="st">"PR"</span>,     <span class="co">#&lt;&lt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6500</span>),  <span class="co">#&lt;&lt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)   <span class="co">#&lt;&lt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex4c_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A funnel plot object with 267 points of which 7 are outliers. 
+Plot is adjusted for overdispersion. </code></pre>
+</div>
+</div>
+<p>Things to learn from the code chunk above. + data_type argument is used to change from default “SR” to “PR” (i.e.&nbsp;proportions). + xrange and yrange are used to set the range of x-axis and y-axis</p>
+</section>
+<section id="funnelplotr-methods-makeover-2" class="level3">
+<h3 class="anchored" data-anchor-id="funnelplotr-methods-makeover-2">FunnelPlotR methods: Makeover 2</h3>
+<p>The code chunk below plots a funnel plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel_plot</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.data =</span> covid19,  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">numerator =</span> Death,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">denominator =</span> Positive,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">`</span><span class="at">Sub-district</span><span class="st">`</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_type =</span> <span class="st">"PR"</span>,   </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6500</span>),  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="cn">NA</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Cumulative COVID-19 Fatality Rate by Cumulative Total Number of COVID-19 Positive Cases"</span>, <span class="co">#&lt;&lt;           </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_label =</span> <span class="st">"Cumulative COVID-19 Positive Cases"</span>, <span class="co">#&lt;&lt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_label =</span> <span class="st">"Cumulative Fatality Rate"</span>  <span class="co">#&lt;&lt;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex4c_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A funnel plot object with 267 points of which 7 are outliers. 
+Plot is adjusted for overdispersion. </code></pre>
+</div>
+</div>
+<p>Things to learn from the code chunk above.</p>
+<ul>
+<li>label = NA argument is to removed the default label outliers feature.</li>
+<li>title argument is used to add plot title.</li>
+<li>x_label and y_label arguments are used to add/edit x-axis and y-axis titles.</li>
+</ul>
+</section>
+</section>
+<section id="funnel-plot-for-fair-visual-comparison-ggplot2-methods" class="level2">
+<h2 class="anchored" data-anchor-id="funnel-plot-for-fair-visual-comparison-ggplot2-methods">Funnel Plot for Fair Visual Comparison: ggplot2 methods</h2>
+<p>In this section, you will gain hands-on experience on building funnel plots step-by-step by using ggplot2. It aims to enhance you working experience of ggplot2 to customise speciallised data visualisation like funnel plot.</p>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1"></h3>
+</section>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2"></h3>
+</section>
+<section id="section-3" class="level3">
+<h3 class="anchored" data-anchor-id="section-3"></h3>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 
 
-</section>
 </section>
 </section>
 
