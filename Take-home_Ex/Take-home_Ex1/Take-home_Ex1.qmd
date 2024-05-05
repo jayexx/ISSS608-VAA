@@ -26,7 +26,7 @@ The key objective of this study are to leverage on visual analytics in the follo
 
 ## Getting Started
 
-The code chunk below load the following libraries:
+The code chunk below loads the following libraries:
 
 -   tidyverse: an amalgamation of libraries for data handling (including ggplot2, dplyr, tidyr, readr, tibble)
 -   knitr: for creating dynamic html tables/reports
@@ -49,7 +49,7 @@ The main dataset, extracted from URA Realis database, contains the private resid
 
 ### Importing the data
 
-The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+The code chunk below imports 5 quarters of Private Residential Transaction data into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
 
 ```{r}
 Realis24Q1 <- read_csv("data/ResidentialTrx2024q1.csv")
