@@ -1,0 +1,104 @@
+---
+title: "In-class Ex4"
+author: "Jayexx Low"
+date: "May 4, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+### Installing & loading required libraries
+
+The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment
+
+```{r}
+pacman:: p_load(ggstatsplot, tidyverse)
+```
+
+### Importing the data
+
+The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+
+```{r}
+exam <- read_csv("data/Exam_data.csv")
+``` 
+
+In the code chunk below, gghistostats() is used to to build an visual of one-sample test on English scores.
+
+```{R}
+set.seed(1234)
+
+p <- gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "bayes",
+  test.value = 60,
+  bin.args = list(color = "black",
+                  fill = "grey50",
+                  alpha = 0.7),
+                  normal.curve = TRUE,
+                  normal.curve.args = list(linewidth = 0.5),
+  xlab = "English scores"
+)
+
+p
+```
+
+```{R}
+extract_stats(p)
+```
+
+```{R}
+ggdotplotstats(
+  data = exam,
+  x = ENGLISH,
+  y = CLASS,
+  title = "",
+  xlab = ""
+)
+```
+Note on the above, the y axis 'CLASS' categorical variable is arranged according to its x axis values rather than alphabetical order,  eg. 3D is above 3A 
+
+```{R}
+exam_long <- exam %>%
+  pivot_longer(
+    cols = ENGLISH: SCIENCE,
+    names_to = "SUBJECT",
+    values_to = "SCORES") %>%
+  filter(CLASS == "3A")
+```
+
+
+
+
+```{R}
+ggwithinstats(
+  data = filter(exam_long,
+                SUBJECT %in%
+                  c("MATHS", "SCIENCE")),
+  x = SUBJECT, 
+  y = SCORES,
+  type="p"
+)
+```
+
+```{r}
+ggscatterstats(
+  data = exam,
+  x = MATHS,
+  y= ENGLISH,
+  marginal = TRUE,
+  label.var = ID,
+  label.expression = ENGLISH > 90 & MATHS >90
+)
+```
+
+
+
+
+
+
+
