@@ -12,9 +12,9 @@ execute:
 
 ## Introduction
 
-In this take-home exercise, you are required to:
+As a follow on to the previous study on Singapore's private property market, this exercise would entail a closer scrutiny on the Data Visualisation (DataViz) done.
 
-select one data visualisation from the Take-home Exercise 1 submission prepared by your classmate, critic the submission in terms of clarity and aesthetics, prepare a sketch for the alternative design by using the data visualisation design principles and best practices you had learned in Lesson 1 and 2. remake the original design by using ggplot2, ggplot2 extensions and tidyverse packages.
+For which, one DataViz will be selected, and critiqued based on (a) clarity and (b) aesthetics, prepare a sketch for the alternative design by using the data visualisation design principles and best practices you had learned in Lesson 1 and 2. remake the original design by using ggplot2, ggplot2 extensions and tidyverse packages.
 
 ## Getting Started
 
@@ -63,10 +63,9 @@ https://peishan0502-isss608.netlify.app/take-home_ex/take-home_ex01/take-home_ex
 
 - poor logic in removing outliers
 - wrong representation of prices since the data points for multiple-unit transactions was not averaged to find the price per unit
-- poor alignment of y-axis for comparison
-- arrangement gives difficulty to compare sub-market components for each quarter
-- Lack of label for median given the wide tick intervals in the y-axis
-
+- Near impossible to read and compare the position of the median given (a) the wide tick intervals in the y-axis and (b) the extremely compressed box plot even after excluding some outliers
+- Misalignment of y-axis impeding the comparison between the 2 box plots
+- Arrangement of the boxplots by quarters also impedes the comparison of sub-market components between the 2 quarters
 
 ### Aesthetics
 
@@ -75,3 +74,12 @@ https://peishan0502-isss608.netlify.app/take-home_ex/take-home_ex01/take-home_ex
 - font size
 
 ## Recommended Makeover
+
+To addrress the aforesaid critique, the following alternatives are suggested
+
+1.  Reassess outliers and Re-clean Data, by choosing 1 of the following options:
+(a) Remove all multiple-unit transactions, 
+(b) Use PSF instead of Transacted Price, or 
+(c) Derive  a new variable Price per unit by dividing the variable 'Transacted price ($)' by the variable 'Number of Units'
+
+2. 

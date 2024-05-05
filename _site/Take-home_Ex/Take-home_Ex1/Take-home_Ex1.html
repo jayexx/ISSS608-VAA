@@ -137,6 +137,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex3/Hands-on_Ex3b.html" rel="" target="">
  <span class="dropdown-text">Hands-on Ex 3b</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4a.html" rel="" target="">
+ <span class="dropdown-text">Hands-on Ex 4a</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4b.html" rel="" target="">
+ <span class="dropdown-text">Hands-on Ex 4b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex4c.html" rel="" target="">
+ <span class="dropdown-text">Hands-on Ex 4c</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -152,6 +164,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex2/In-class_Ex2.html" rel="" target="">
  <span class="dropdown-text">In-class Ex 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex4/In-class_Ex4.html" rel="" target="">
+ <span class="dropdown-text">In-class Ex 4</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -162,6 +178,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex1/Take-home_Ex1.html" rel="" target="">
  <span class="dropdown-text">Take-home Ex 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex2/Take-home_Ex2.html" rel="" target="">
+ <span class="dropdown-text">Take-home Ex 2</span></a>
   </li>  
     </ul>
   </li>
@@ -236,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 27, 2024</p>
+      <p class="date-modified">May 5, 2024</p>
     </div>
   </div>
     
@@ -362,7 +382,7 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <section id="missing-data" class="level4">
 <h4 class="anchored" data-anchor-id="missing-data">Missing Data</h4>
 <p>Based on the output from Glimpse(), it is noted that there were missing values denoted by “-” for variables such as Nett Price, hence, these values are first converted to NA before we check for NA values as a whole. Noting that there are valid values such as dates that also contain “-” and multibyte values such as ENCHANTe~ in the project name col, the code uses regex to filter for “-” values instead.</p>
-<p>colSums() and is.NA() functions are then used to search for missing values as a whole for the 2024 Q1 dataset.</p>
+<p>colSums() and is.NA() functions are thus used to search for missing values as a whole for the 2024 Q1 dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert "-" values with no characters before and after to NA</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Realis24Q1 <span class="ot">&lt;-</span> Realis24Q1 <span class="sc">%&gt;%</span></span>
@@ -558,9 +578,9 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <colgroup>
 <col style="width: 1%">
 <col style="width: 6%">
-<col style="width: 3%">
-<col style="width: 29%">
-<col style="width: 56%">
+<col style="width: 2%">
+<col style="width: 28%">
+<col style="width: 57%">
 <col style="width: 1%">
 </colgroup>
 <tbody>
@@ -690,7 +710,7 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <td>num</td>
 <td>Number of units sold in the single transaction</td>
 <td><p>Number of units is chosen as the dependent variable for Data Visualisation 1 and 2 to explore the distribution of unit sales by property classifications.</p>
-<p>To minimise complexity in the visualisation, the multiple-value transactions will be filtered away as outliers.</p></td>
+<p>To minimise complexity in the visualisation, the multiple-unit transactions which constitutes a small minority of the data, will be filtered away as outliers, which could be revisited in a future study.</p></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -707,7 +727,7 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 <td>Completion Date</td>
 <td>chr</td>
 <td>Year when the first building project is deemed completed upon grant of the tenure of the land.</td>
-<td><p>Missing values found for this variable in minority of rows. The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3,</p>
+<td><p>The age of the property can be derived from this variable which will be a property classification and potential interacting variable that will be used in Data Visualisation 1, 2 and 3, however, missing values were found for this variable in a small minority of rows.</p>
 <p>Hence data transformation is required to remove rows with missing values, derive property age with 2024 as a reference point, and replace “Uncompleted” properties as 0 in age.</p></td>
 <td></td>
 </tr>
@@ -761,7 +781,7 @@ $ `Planning Area`               &lt;chr&gt; "Outram", "Serangoon", "Bedok", "Que
 </tr>
 </tbody>
 </table>
-<p>Based on the above, the data transformations required in preparation for the Data Visualisation is done in the following code chunk.</p>
+<p>Based on the above, the data transformations required in preparation for the Data Visualisation is done and subsequently inspected using glimpse() in the following code chunk.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -900,7 +920,7 @@ $ Property_Age                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 20, 11, 9, 11, 8, 
 <li><p>For Tenure, Leasehold is preferred over 999yrs/freehold</p></li>
 <li><p>For Property Age, newer properties are preferred over older properties.</p></li>
 </ul>
-<p>While the above inferences could be made, it does not equate to a causality relationship between these individual variables and unit sales, as there could be multiple other confounding variables that explains the one or more of the observations.</p>
+<p>While the above inferences could be made, it does not equate to a causality relationship between these individual variables and unit sales, as there could be multiple other confounding variables that explains one or more of these observations, such as the following.</p>
 <ul>
 <li><p>For example, the overall property price and hence affordability could be an underlying reason that these preferences are surfacing, which could relate to property type, type of sale and tenure, where the most preferred options tend to align with the most affordable private properties in Singapore as well.</p></li>
 <li><p>Another confounding variable could be supply or availability of such categories of properties for sale, which could relate to the property type, type of sale and tenure, since the most preferred options are also the most abundant categories of private properties in Singapore.</p></li>
