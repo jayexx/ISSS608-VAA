@@ -147,7 +147,13 @@ Realis_Q1merged <- Realis_Q1merged %>% filter(`Number of Units` <= 1)
 
 ### 2. Synchronise box plots' axes, visualise same category side by side and enable zoom into box plot to compare summary stats
 
-This is meant to address issues #2, #3, #4, #6 & #7, by employing 1 of the following options in the DataViz makeover: (a) facet_grid or facet_wrap (b) Coordinated Multiple Views with ggiraph (c) Interactive Box plot with ggplotly()
+This is meant to address issues #2, #3, #4, #6 & #7, by employing 1 of the following options in the DataViz makeover:
+
+\(a\) facet_grid or facet_wrap
+
+\(b\) Coordinated Multiple Views with ggiraph
+
+\(c\) Interactive Box plot with ggplotly()
 
 Going with (c) as potentially the simplest option, a revised DataViz with Coordinated Multiple views with ggplotly() is plotted with the following code chunk.
 
@@ -195,7 +201,7 @@ Going with (a) as the simplest option, a revised DataViz to add the indication o
 # Create box plots for each combination of Type of Sale and Quarter
 p <- ggplot(data = Realis_Q1merged, aes(x = Type_Quarter, y = `Transacted Price ($ Million)`, fill = factor(Quarter))) +
   geom_boxplot() +
-  stat_summary(fun = mean, geom = "point", shape = 19, size = 2, color = "red",
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 1.5, color = "blue",
                position = position_dodge(width = 0.75)) +
   labs(x = "Type of Sale and Quarter", y = "Transacted Price ($ Million)") +
   ggtitle("Box Plot of Transacted Price by Type of Sale and Quarter") +
@@ -220,9 +226,9 @@ Converting to an interactive violin plot further enables the distribution to be 
 # Create violin plots for each combination of Type of Sale and Quarter
 p <- ggplot(data = Realis_Q1merged, aes(x = Type_Quarter, y = `Transacted Price ($ Million)`, fill = factor(Quarter))) +
   geom_violin(trim = FALSE, alpha = 0.7, width = 0.8) + # Adjust width of violins
-  stat_summary(fun = mean, geom = "point", shape = 19, size = 2, color = "red",
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 1.5, color = "blue",
                position = position_dodge(width = 0.75), aes(label = paste("Mean Transaction Price = ", round(..y.., 2))), show.legend = FALSE) +
-  stat_summary(fun = median, geom = "point", shape = 19, size = 2, color = "black",
+  stat_summary(fun = median, geom = "point", shape = 20, size = 1.5, color = "black",
                position = position_dodge(width = 0.75), aes(label = paste("Median Transaction Price = ", round(..y.., 2))), show.legend = FALSE) +
   stat_summary(fun = function(x) quantile(x, 0.25), geom = "segment", aes(x = Type_Quarter, xend = Type_Quarter, yend = ..y..), position = position_dodge(width = 0.75), color = "blue", show.legend = FALSE) +
   stat_summary(fun = function(x) quantile(x, 0.75), geom = "segment", aes(x = Type_Quarter, xend = Type_Quarter, yend = ..y..), position = position_dodge(width = 0.75), color = "blue", show.legend = FALSE) +
