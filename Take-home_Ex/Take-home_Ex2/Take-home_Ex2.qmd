@@ -56,11 +56,16 @@ For this exercise, the selected DataViz is the [***Comparison of Transacted pric
 ![](images/unnamed-chunk-28-1.png)
 
 Of note, the accompanying explanation for the DataViz covered the following points:
--   Firstly, based on the code chunk used, the initial box plot plotted the 'Transacted Price ($)' in the y-axis against the 'Type of Sale' in the x-axis, for transaction data in each of the 1st quarters of 2023 and 2024.
+
+-   Firstly, based on the code chunk used, the initial box plot plotted the 'Transacted Price (\$)' in the y-axis against the 'Type of Sale' in the x-axis, for transaction data in each of the 1st quarters of 2023 and 2024.
+
 -   However, since the box plots for both time periods 'looked very squished', 2 extreme outliers were excluded for each plot, and finally both plots were compiled side by side, to give the final DataViz figure above.
+
 -   The analysis made gave the following insights:
-  -   In 2024 Q1, the median transacted price for resale is slightly lower than that of new sale, whereas, the range of prices for resale is larger as compared to new sale or sub sale, as shown by its larger interquartile range (IQR).
-  -   Similar to 2024 Q1, 2023 Q1 box plot shows the median transacted price is lower for resale as compared to new sale, whereas, the IQR of transacted prices of resale and new sale are similar, and that of sub sale is much smaller this time.
+
+    -   In 2024 Q1, the median transacted price for resale is slightly lower than that of new sale, whereas, the range of prices for resale is larger as compared to new sale or sub sale, as shown by its larger interquartile range (IQR).
+
+    -   Similar to 2024 Q1, 2023 Q1 box plot shows the median transacted price is lower for resale as compared to new sale, whereas, the IQR of transacted prices of resale and new sale are similar, and that of sub sale is much smaller this time.
 
 ### Performing Relevant Data Preparation
 
@@ -100,11 +105,15 @@ glimpse(Realis_Q1merged)
 
 To address the aforesaid critique, the following alternatives are suggested
 
-### 1.  Reassess outliers and Re-clean Data 
+### 1. Reassess outliers and Re-clean Data
+
 This is meant to address issues #1 and potentially #2 and #7, by choosing 1 of the following options:
-(a) Exclude all multiple-unit transactions as outliers,
-(b) Use PSF instead of Transacted Price, or
-(c) Derive a new variable Price per unit by dividing the variable 'Transacted price (\$)' by the variable 'Number of Units'
+
+\(a\) Exclude all multiple-unit transactions as outliers,
+
+\(b\) Use PSF instead of Transacted Price, or
+
+\(c\) Derive a new variable Price per unit by dividing the variable 'Transacted price (\$)' by the variable 'Number of Units'
 
 To consider if it is meaningful for option (a), a uni-variate analysis on number of units is first done in the following code chunk.
 
@@ -128,6 +137,7 @@ Using the following code chunk, the Project Names for the multiple-unit transact
 subset_df <- subset(Realis_Q1merged, `Number of Units` > 1, select = c("Project Name", "Number of Units"))
 subset_df
 ```
+
 Based on the above, it is found that out of 9.6k rows, only 5 rows contain multiple-unit transaction. For which, Bagnall court and Meyer Park were found to be en bloc sales, and including the rest, amounts to slightly over just 1% of the total units transacted. Hence it seems reasonable to exclude these data points in lieu that there could be different factors affecting the transaction prices and hence will need to be explored separately instead. The data cleaning is hence done in the following code chunk
 
 ```{r}
@@ -135,11 +145,9 @@ Based on the above, it is found that out of 9.6k rows, only 5 rows contain multi
 Realis_Q1merged <- Realis_Q1merged %>% filter(`Number of Units` <= 1)
 ```
 
-### 2.  Synchronise box plots' axes, visualise same category side by side and enable zoom into box plot to compare summary stats
-This is meant to address issues #2, #3, #4, #6 & #7, by employing 1 of the following options in the DataViz makeover:
-(a) facet_grid or facet_wrap
-(b) Coordinated Multiple Views with ggiraph 
-(c) Interactive Box plot with ggplotly()
+### 2. Synchronise box plots' axes, visualise same category side by side and enable zoom into box plot to compare summary stats
+
+This is meant to address issues #2, #3, #4, #6 & #7, by employing 1 of the following options in the DataViz makeover: (a) facet_grid or facet_wrap (b) Coordinated Multiple Views with ggiraph (c) Interactive Box plot with ggplotly()
 
 Going with (c) as potentially the simplest option, a revised DataViz with Coordinated Multiple views with ggplotly() is plotted with the following code chunk.
 
@@ -166,16 +174,21 @@ p <- ggplot(data = Realis_Q1merged, aes(x = Type_Quarter, y = `Transacted Price 
 # Convert ggplot object to plotly
 ggplotly(p)
 ```
-In the revised DataViz above, side-by-side comparison can now be done, with the box plot color fill differentiating between 2023Q1 and 2024Q1. And to further resolve the compressed box plot due to the long tail of outliers, the interactive ggplotly() function allows zooming in. Furthermore, the y-axis tick intervals are also adjusted to $2 million, along with the addition of data labels for the median, IQR, min and max. These significantly enhances the visualisation in terms of clarity and aesthetics for the differences between the Sales Type between Q1 of 2023 and 2024.
 
+In the revised DataViz above, side-by-side comparison can now be done, with the box plot color fill differentiating between 2023Q1 and 2024Q1. And to further address the compressed box plot due to the long tail of outliers, the interactive ggplotly() function allows zooming in. Furthermore, the axes are flipped with x-axis tick intervals (for transaction prices) adjusted to \$2 million, along with the addition of data labels for the median, IQR, min and max. These significantly enhances the visualisation in terms of clarity and aesthetics for the differences between the Sales Type between Q1 of 2023 and 2024.
 
-### 3.  Clearer indication of skewness of distribution and removal of tick marks for categorial variable
+### 3. Clearer indication of skewness of distribution and removal of tick marks for categorial variable
+
 This is meant to address the remaining issues #5 & #8, by employing 1 of the following options in the DataViz makeover:
-(a) display mean as a red dot on box plot
-(b) use violin plot with median and mean
-(c) two sample mean test using gg between stats
+
+\(a\) display mean as a red dot on box plot
+
+\(b\) use violin plot with median and mean
+
+\(c\) two sample mean test using gg between stats
 
 Going with (a) as the simplest option, a revised DataViz to add the indication of the mean and clean up the plot by removing the tick marks for categorical variable is plotted with the following code chunk.
+
 ```{R}
 #| fig-width: 12
 
@@ -196,10 +209,10 @@ ggplotly(p, tooltip = c("y"))
 
 
 ```
+
 With the latest version of the DataViz makeover above, the mean is illustrated with the red circle, and the value can also be read from the tooltip upon mouse over the point. With the mean, the skewness of the plot can be determined based on whether the mean is smaller than (left skew) larger than (right skew) or equal (centralized) to the median. Last but not least, the tick marks for the categorical variable which is unnecessary has also been removed.
 
-
-Converting to an interactive violin plot further enables the distribution to be visualised and compared, while keeping the labels for the mean and median as red and black circles respectively, however the code would increase in complexity significantly to still include the quartile, as see in the code chunk below.  
+Converting to an interactive violin plot further enables the distribution to be visualised and compared, while keeping the labels for the mean and median as red and black circles respectively, however the code would increase in complexity significantly to still include the quartile, as see in the code chunk below.
 
 ```{R}
 #| fig-width: 12
