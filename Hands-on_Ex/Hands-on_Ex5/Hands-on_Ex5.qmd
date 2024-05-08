@@ -1,0 +1,77 @@
+---
+title: "Hands-on Ex5"
+author: "Jayexx Low"
+date: "May 8, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# Visualising and Analysing Text Data with R: tidytext methods
+
+## Getting Started
+
+### Loading Required R Package Libraries
+
+The code chunk below loads the following libraries:
+
+-   tidytext,
+-   tidyverse (mainly readr, purrr, stringr, ggplot2)
+-   widyr, - wordcloud and ggwordcloud,
+-   textplot (required igraph, tidygraph and ggraph, )
+-   DT,
+-   lubridate and hms.
+
+```{R}
+pacman::p_load(tidytext, widyr, wordcloud, DT, ggwordcloud, textplot, lubridate, hms,
+tidyverse, tidygraph, ggraph, igraph)
+```
+
+### Importing Multiple Text Files from Multiple Folders
+
+#### Creating a folder list
+
+```{R}
+news20 <- "data/20news/"
+```
+
+#### Define a function to read all files from a folder into a data frame
+
+```{R}
+read_folder <- function(infolder) {
+  tibble(file = dir(infolder, 
+                    full.names = TRUE)) %>%
+    mutate(text = map(file, 
+                      read_lines)) %>%
+    transmute(id = basename(file), 
+              text) %>%
+    unnest(text)
+}
+```
+
+#### Reading in all the messages from the 20news folder
+
+```{R}
+raw_text <- tibble(folder = 
+                     dir(news20, 
+                         full.names = TRUE)) %>%
+  mutate(folder_out = map(folder, 
+                          read_folder)) %>%
+  unnest(cols = c(folder_out)) %>%
+  transmute(newsgroup = basename(folder), 
+            id, text)
+write_rds(raw_text, "data/rds/news20.rds")
+```
+
+::: {.callout-tip title="Things to learn from the code chunk above:"}
+-   read_lines() of readr package is used to read up to n_max lines from a file. 
+-   map() of purrr package is used to transform their input by applying a function to each element of a list and returning an object of the same length as the input. 
+-   unnest() of dplyr package is used to flatten a list-column of data frames back out into regular columns. 
+-   mutate() of dplyr is used to add new variables and preserves existing ones; 
+-   transmute() of dplyr is used to add new variables and drops existing ones. 
+-   read_rds() is used to save the extracted and combined data frame as rds file for future use.
+:::
+

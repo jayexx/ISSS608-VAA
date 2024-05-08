@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
-<p>The code chunk below load the following libraries:</p>
+<p>The code chunk below loads the following libraries:</p>
 <ul>
 <li>tidyverse: an amalgamation of libraries for data handling (including ggplot2, dplyr, tidyr, readr, tibble)</li>
 <li>knitr: for creating dynamic html tables/reports</li>
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The main dataset, extracted from URA Realis database, contains the private residential sales transactions in Singapore in the first quarter of 2024 (2024 Q1). In addition, this study will also perform comparisons with the preceding 4 quarters, which is in fact 2023 Q1-Q4, similarly extracted from the URA Realis database.</p>
 <section id="importing-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-the-data">Importing the data</h3>
-<p>The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.</p>
+<p>The code chunk below imports 5 quarters of Private Residential Transaction data into R environment by using read_csv() function of readr package, which is part of the tidyverse package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Realis24Q1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2024q1.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Realis23Q4 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ResidentialTrx2023q4.csv"</span>)</span>

@@ -1,0 +1,14 @@
+{
+  "hash": "99565678467982a5ed295e1b9a4c9f17",
+  "result": {
+    "markdown": "---\ntitle: \"Hands-on Ex5\"\nauthor: \"Jayexx Low\"\ndate: \"May 8, 2024\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n# Visualising and Analysing Text Data with R: tidytext methods\n\n## Getting Started\n\n### Loading Required R Package Libraries\n\nThe code chunk below loads the following libraries:\n-   tidytext,\n-   tidyverse (mainly readr, purrr, stringr, ggplot2)\n-   widyr, - wordcloud and ggwordcloud,\n-   textplot (required igraph, tidygraph and ggraph, )\n-   DT,\n-   lubridate and hms.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman::p_load(tidytext, widyr, wordcloud, DT, ggwordcloud, textplot, lubridate, hms,\ntidyverse, tidygraph, ggraph, igraph)\n```\n:::\n\n\n### Importing Multiple Text Files from Multiple Folders\n\n#### Creating a folder list\n\n\n::: {.cell}\n\n```{.r .cell-code}\nnews20 <- \"data/20news/\"\n```\n:::\n\n\n#### Define a function to read all files from a folder into a data frame\n\n\n::: {.cell}\n\n```{.r .cell-code}\nread_folder <- function(infolder) {\n  tibble(file = dir(infolder, \n                    full.names = TRUE)) %>%\n    mutate(text = map(file, \n                      read_lines)) %>%\n    transmute(id = basename(file), \n              text) %>%\n    unnest(text)\n}\n```\n:::\n\n\n#### Reading in all the messages from the 20news folder\n\n\n::: {.cell}\n\n```{.r .cell-code}\nraw_text <- tibble(folder = \n                     dir(news20, \n                         full.names = TRUE)) %>%\n  mutate(folder_out = map(folder, \n                          read_folder)) %>%\n  unnest(cols = c(folder_out)) %>%\n  transmute(newsgroup = basename(folder), \n            id, text)\nwrite_rds(raw_text, \"data/rds/news20.rds\")\n```\n:::\n\n\n::: {.callout-tip title=\"Things to learn from the code chunk above:\"}\n-   read_lines() of readr package is used to read up to n_max lines from a file. \n-   map() of purrr package is used to transform their input by applying a function to each element of a list and returning an object of the same length as the input. \n-   unnest() of dplyr package is used to flatten a list-column of data frames back out into regular columns. \n-   mutate() of dplyr is used to add new variables and preserves existing ones; \n-   transmute() of dplyr is used to add new variables and drops existing ones. \n-   read_rds() is used to save the extracted and combined data frame as rds file for future use.\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

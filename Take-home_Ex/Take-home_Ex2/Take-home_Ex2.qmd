@@ -216,9 +216,9 @@ ggplotly(p, tooltip = c("y"))
 
 ```
 
-With the latest version of the DataViz makeover above, the mean is illustrated with the red circle, and the value can also be read from the tooltip upon mouse over the point. With the mean, the skewness of the plot can be determined based on whether the mean is smaller than (left skew) larger than (right skew) or equal (centralized) to the median. Last but not least, the tick marks for the categorical variable which is unnecessary has also been removed.
+With the latest version of the DataViz makeover above, the mean is illustrated with the blue circle, and the value can also be read from the tooltip upon mouse over the point. With the mean, the skewness of the plot can be determined based on whether the mean is smaller than (left skew) larger than (right skew) or equal (centralized) to the median. Last but not least, the tick marks for the categorical variable which is unnecessary has also been removed.
 
-Converting to an interactive violin plot further enables the distribution to be visualised and compared, while keeping the labels for the mean and median as red and black circles respectively, however the code would increase in complexity significantly to still include the quartile, as see in the code chunk below.
+Converting to an interactive violin plot further enables the distribution to be visualised and compared, while keeping the labels for the mean and median as blue and black circles respectively, however the code would increase in complexity significantly to still include the quartile, as see in the code chunk below.
 
 ```{R}
 #| fig-width: 12
