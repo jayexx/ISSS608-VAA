@@ -111,7 +111,8 @@ cleaned_text <- raw_text %>%
 ```
 
 ::: {.callout-tip title="Things to learn from the code chunk above:"}
-cumsum() of base R is used to return a vector whose elements are the cumulative sums of the elements of the argument. str_detect() from stringr is used to detect the presence or absence of a pattern in a string.
+-   cumsum() of base R is used to return a vector whose elements are the cumulative sums of the elements of the argument. 
+-   str_detect() from    stringr is used to detect the presence or absence of a pattern in a string.
 :::
 
 ### Removing lines with nested text representing quotes from other users.
@@ -130,7 +131,8 @@ cleaned_text <- cleaned_text %>%
 ```
 
 ::: {.callout-tip title="Things to learn from the code chunk above:"}
-str_detect() from stringr is used to detect the presence or absence of a pattern in a string. filter() of dplyr package is used to subset a data frame, retaining all rows that satisfy the specified conditions.
+-   str_detect() from stringr is used to detect the presence or absence of a pattern in a string. 
+-   filter() of dplyr package is used to subset a data frame, retaining all rows that satisfy the specified conditions.
 :::
 
 ### Text Data Processing
@@ -171,6 +173,13 @@ wordcloud(words_by_newsgroup$word,
 
 A DT table can be used to complement the visual discovery.
 
+```{R}
+DT::datatable(words_by_newsgroup, filter = 'top') %>% 
+  formatStyle(0, 
+              target = 'row', 
+              lineHeight='25%')
+```
+
 ### Visualising Words in newsgroups
 
 The wordcloud below is plotted by using ggwordcloud package
@@ -205,10 +214,6 @@ tf_idf <- words_by_newsgroup %>%
 
 ###Visualising tf-idf as interactive table
 
-Table below is an interactive table created by using datatable()
-
-### Visualising tf-idf as interactive table
-
 The code chunk below uses datatable() of DT package to create a html table that allows pagination of rows and columns.
 
 ```{R}
@@ -222,7 +227,9 @@ DT::datatable(tf_idf, filter = 'top') %>%
 ```
 
 ::: {.callout-tip title="Things to learn from the code chunk above:"}
-filter() argument is used to turn control the filter UI. formatRound() is used to customise the values format. The argument digits define the number of decimal places. formatStyle() is used to customise the output table. In this example, the arguments target and lineHeight are used to reduce the line height by 25%.
+-   filter() argument is used to turn control the filter UI. 
+-   formatRound() is used to customise the values format. The argument digits define the number of decimal places.  
+-   formatStyle() is used to customise the output table. In this example, the arguments target and lineHeight are used to reduce the line height by 25%.
 :::
 
 To learn more about customising DT's table, visit this [link](https://rstudio.github.io/DT/functions.html).
