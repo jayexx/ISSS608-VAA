@@ -1,0 +1,14 @@
+{
+  "hash": "483f10f8e997e1e96e2609d95bd67ffe",
+  "result": {
+    "markdown": "---\ntitle: \"In-class Ex5a\"\nauthor: \"Jayexx Low\"\ndate: \"May 11, 2024\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n### Installing & loading required libraries\n\nThe code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman:: p_load(jsonlite, tidyverse, tidygraph, ggraph)\n```\n:::\n\n\n### Importing the data\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmc1_data <- fromJSON(\"data/mc1.json\")\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nmc2_data <- fromJSON(\"data/mc2.json\")\n```\n:::\n\n\n```\nmc3_data <- fromJSON(\"data/mc3.json\")\n``` ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
