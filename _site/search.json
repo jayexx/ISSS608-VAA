@@ -579,5 +579,47 @@
     "title": "Hands-on Ex6",
     "section": "",
     "text": "visNetwork() is a R package for network visualization, using vis.js javascript library.\nvisNetwork() function uses a nodes list and edges list to create an interactive graph.\nThe nodes list must include an “id” column, and the edge list must have “from” and “to” columns.\nThe function also plots the labels for the nodes, using the names of the actors from the “label” column in the node list.\nThe resulting graph is fun to play around with.\nYou can move the nodes and the graph will use an algorithm to keep the nodes properly spaced.\nYou can also zoom in and out on the plot and move it around to re-center it.\n\n\n\nBefore we can plot the interactive network graph, we need to prepare the data model by using the code chunk below.\n\nGAStech_edges_aggregated &lt;- GAStech_edges %&gt;%\n  left_join(GAStech_nodes, by = c(\"sourceLabel\" = \"label\")) %&gt;%\n  rename(from = id) %&gt;%\n  left_join(GAStech_nodes, by = c(\"targetLabel\" = \"label\")) %&gt;%\n  rename(to = id) %&gt;%\n  filter(MainSubject == \"Work related\") %&gt;%\n  group_by(from, to) %&gt;%\n    summarise(weight = n()) %&gt;%\n  filter(from!=to) %&gt;%\n  filter(weight &gt; 1) %&gt;%\n  ungroup()\n\n\n\n\nThe code chunk below will be used to plot an interactive network graph by using the data prepared.\n\nvisNetwork(GAStech_nodes, \n           GAStech_edges_aggregated)\n\n\n\n\n\n\n\n\nIn the code chunk below, Fruchterman and Reingold layout is used.\n\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") \n\n\n\n\n\nVisit Igraph to find out more about visIgraphLayout’s argument.\n\n\n\nvisNetwork() looks for a field called “group” in the nodes object and colour the nodes according to the values of the group field.\nThe code chunk below rename Department field to group.\n\nGAStech_nodes &lt;- GAStech_nodes %&gt;%\n  rename(group = Department) \n\nWhen we rerun the code chunk below, visNetwork shades the nodes by assigning unique colour to each category in the group field.\n\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)\n\n\n\n\n\n\n\n\nIn the code run below visEdges() is used to symbolise the edges.\n\nThe argument arrows is used to define where to place the arrow.\nThe smooth argument is used to plot the edges using a smooth curve.\n\n\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visEdges(arrows = \"to\", \n           smooth = list(enabled = TRUE, \n                         type = \"curvedCW\")) %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)\n\n\n\n\n\nVisit edges to find out more about visEdges’s argument.\n\n\n\nIn the code chunk below, visOptions() is used to incorporate interactivity features in the data visualisation.\n\nThe argument highlightNearest highlights nearest when clicking a node.\nThe argument nodesIdSelection adds an id node selection creating an HTML select element.\n\n\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visOptions(highlightNearest = TRUE,\n             nodesIdSelection = TRUE) %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)\n\n\n\n\n\nVisit Option to find out more about visOption’s argument."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html",
+    "title": "In-class Ex6",
+    "section": "",
+    "text": "The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\npacman:: p_load(jsonlite, tidyverse, tidygraph, ggraph, corporaexplorer, stringi, rvest, readtext, quanteda)\n\n\n\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\nbible &lt;- readr::read_lines(\"http://www.gutenberg.org/cache/epub/10/pg10.txt\")"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#getting-started",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#getting-started",
+    "title": "In-class Ex6",
+    "section": "",
+    "text": "The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace & ggthemes packages into R environment\n\npacman:: p_load(jsonlite, tidyverse, tidygraph, ggraph, corporaexplorer, stringi, rvest, readtext, quanteda)\n\n\n\n\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.\n\nbible &lt;- readr::read_lines(\"http://www.gutenberg.org/cache/epub/10/pg10.txt\")"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#pre-processing-the-text",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#pre-processing-the-text",
+    "title": "In-class Ex6",
+    "section": "Pre-processing the text",
+    "text": "Pre-processing the text\n# Collapsing into one string.\n\nbible &lt;- paste(bible, collapse = \"\\n\")\n\n# Identifying the beginning and end of the Bible / stripping PJ metadata # (technique borrowed from https://quanteda.io/articles/pkgdown/replication/digital-humanities.html).\n\nstart_v &lt;- stri_locate_first_fixed(bible, \"The First Book of Moses: Called Genesis\")[1]\nend_v &lt;- stri_locate_last_fixed(bible, \"Amen.\")[2]\nbible &lt;- stri_sub(bible, start_v, end_v)\n\n# In the file, every book in the bible is preceded by five newlines, # which we use to split our string into a vector where each element is a book.\n\nbooks &lt;- stri_split_regex(bible, \"\\n{5}\") %&gt;%\n    unlist %&gt;%\n    .[-40]\n\n# Removing the heading “The New Testament of the King James Bible”, # which also was preceded by five newlines.\n# Because of the structure of the text in the file: # Replacing double or more newlines with two newlines, and a single newline with space.\n\nbooks &lt;- str_replace_all(books, \"\\n{2,}\", \"NEW_PARAGRAPH\") %&gt;%\n    str_replace_all(\"\\n\", \" \") %&gt;%\n    str_replace_all(\"NEW_PARAGRAPH\", \"\\n\\n\")\nbooks &lt;- books[3:68] \n\n# The two first elements are not books\n# Identifying new chapters within each book and split the text into chapters. # (The first characters in chapter 2 will e.g. be 2:1)\n\nchapters &lt;- str_replace_all(books, \"(\\\\d+:1 )\", \"NEW_CHAPTER\\\\1\") %&gt;%\n    stri_split_regex(\"NEW_CHAPTER\")\n\n# Removing the chapter headings from the text (we want them as metadata).\n\nchapters &lt;- lapply(chapters, function(x) x[-1])"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#metadata",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#metadata",
+    "title": "In-class Ex6",
+    "section": "Metadata",
+    "text": "Metadata\n# We are not quite happy with the long book titles in the King James Bible, # so we retrieve shorter versions from esv.org which will take up less # space in the corpus map plot.\n\nbook_titles &lt;- read_html(\"https://www.esv.org/resources/esv-global-study-bible/list-of-abbreviations\") %&gt;%\n  html_nodes(\"td:nth-child(1)\") %&gt;%\n  html_text() %&gt;%\n  .[13:78]\n\n# Removing irrelevant elements after manual inspection.\n# We add a column indicating whether a book belongs to the Old or New Testament, # knowing that they contain respectively 39 and 27 books.\n\ntestament &lt;- c(rep(\"Old\", 39), rep(\"New\", 27))"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#creating-data-frame-with-text-and-metadata",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#creating-data-frame-with-text-and-metadata",
+    "title": "In-class Ex6",
+    "section": "Creating data frame with text and metadata",
+    "text": "Creating data frame with text and metadata\n# Data frame with one book as one row.\n\nbible_df &lt;- tibble::tibble(Text = chapters,\n                           Book = book_titles,\n                           Testament = testament)\n\n# We want each chapter to be one row, but keep the metadata (book and which testament).\n\nbible_df &lt;- tidyr::unnest(bible_df, Text)"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#using-corporaexplorer",
+    "href": "In-class_Ex/In-class_Ex6/In-class_Ex6.html#using-corporaexplorer",
+    "title": "In-class Ex6",
+    "section": "Using corporaexplorer",
+    "text": "Using corporaexplorer\nWhen we first have a data frame with text and metadata, creating a “corporaexplorerobject” for exploration is very simple:\n# As this is a corpus which is not organised by date, # we set date_based_corpus to FALSE. # Because we want to organise our exploration around the books in the Bible, # we pass \"Book\" to the grouping_variable argument. # We specify which metadata columns we want to be displayed in the # “Document information” tab, using the columns_doc_info argument.\n\nKJB &lt;- prepare_data(dataset = bible_df,\n                    date_based_corpus = FALSE,\n                    grouping_variable = \"Book\",\n                    columns_doc_info = c(\"Testament\", \"Book\"))\n\n\nclass(KJB)\n\n[1] \"corporaexplorerobject\"\n\n\n\nexplore(KJB)\n\nShiny applications not supported in static R Markdown documents"
   }
 ]
