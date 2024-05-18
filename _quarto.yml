@@ -36,9 +36,11 @@ website:
       - text: "In-class Ex 5"
         href: "In-class_Ex/In-class_Ex5/In-class_Ex5.html"
       - text: "In-class Ex 5a"
-        href: "In-class_Ex/In-class_Ex5/In-class_Ex5.html"
+        href: "In-class_Ex/In-class_Ex5/In-class_Ex5a.html"
       - text: "In-class Ex 6"
-        href: "In-class_Ex/In-class_Ex5/In-class_Ex6.html"
+        href: "In-class_Ex/In-class_Ex6/In-class_Ex6a.html"
+      - text: "In-class Ex 6a"
+        href: "In-class_Ex/In-class_Ex6/In-class_Ex6a.html"
     - text: "Take-home Ex"
       menu:
       - text: "Take-home Ex 1"
