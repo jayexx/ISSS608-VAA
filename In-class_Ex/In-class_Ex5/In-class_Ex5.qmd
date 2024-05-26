@@ -20,7 +20,7 @@ pacman:: p_load(tidyverse, readtext, tidytext, quanteda)
 
 ### Importing the data
 
-The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.
+The code chunk below imports text data from the MC1 articles into R environment by using readtext() functionfrom the readtext package.
 
 ```{r}
 text_data <- readtext("data/articles/*")

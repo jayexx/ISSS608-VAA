@@ -30,6 +30,56 @@ mc1_data <- fromJSON("data/mc1.json")
 mc2_data <- fromJSON("data/mc2.json")
 ``` 
 
-```
+```{R}
 mc3_data <- fromJSON("data/mc3.json")
 ``` 
+
+```{r}
+class(mc1_data)
+```
+
+```{r}
+mc1_edges <- as_tibble(mc1_data$links) %>%
+  distinct() %>%
+  mutate(source = as.character(source), target = as.character(target), type = as.character(type)) %>%
+  group_by(source, target, type) %>%
+  summarise(weights=n()) %>%
+  filter(source!=target) %>%
+  ungroup()
+```
+
+```{r}
+mc1_nodes <- as_tibble(mc1_data$nodes) %>%
+  mutate(country = as.character(country), id = as.character(id), dob = as.character(dob), type = as.character(type)) %>%
+  select(id, country, dob, type)
+```
+
+```{r}
+id1 <- mc1_edges %>%
+  select(source) %>%
+  rename(id = source)
+id2 <- mc1_edges %>%
+  select(target) %>%
+  rename(id = target)
+mc1_nodes1 <- rbind(id1, id2) %>%
+  distinct() %>%
+  left_join(mc1_nodes,
+            unmatched = "drop")
+```
+
+```{r}
+mc1_graph <- tbl_graph(nodes = mc1_nodes1,
+                       edges = mc1_edges,
+                       directed = FALSE) %>%
+  mutate(betweenness_centrality = centrality_betweenness(), closeness_centrality = centrality_closeness())
+```
+
+```{r}
+g <- ggraph(mc1_graph, 
+            layout = "nicely") + 
+  geom_edge_link(aes()) +
+  geom_node_point(aes(colour = type, 
+                      size = 3))
+
+g + theme_graph()
+```

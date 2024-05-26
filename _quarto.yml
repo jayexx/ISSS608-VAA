@@ -49,6 +49,10 @@ website:
         href: "Take-home_Ex/Take-home_Ex2/Take-home_Ex2.html"
       - text: "Take-home Ex 3"
         href: "Take-home_Ex/Take-home_Ex3/Take-home_Ex3.html"
+    - text: "Group project"
+      menu:
+      - text: "Proposal"
+        href: "Group_Project_G6/Proposal/Group6_project_proposal.html"
     right:  
       - href: index.qmd
         text: Home

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jayexx Low">
-<meta name="dcterms.date" content="2024-05-11">
+<meta name="author" content="Jayexx, Fudi, Fishgrey">
+<meta name="dcterms.date" content="2024-05-15">
 
-<title>ISSS608-VAA - In-class Ex5a</title>
+<title>ISSS608-VAA - The Proposal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -250,8 +216,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installing-loading-required-libraries" id="toc-installing-loading-required-libraries" class="nav-link active" data-scroll-target="#installing-loading-required-libraries">Installing &amp; loading required libraries</a></li>
-  <li><a href="#importing-the-data" id="toc-importing-the-data" class="nav-link" data-scroll-target="#importing-the-data">Importing the data</a></li>
+  <li><a href="#group-project-proposal" id="toc-group-project-proposal" class="nav-link active" data-scroll-target="#group-project-proposal">Group Project proposal</a>
+  <ul class="collapse">
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a>
+  <ul class="collapse">
+  <li><a href="#topic-selection-introduction" id="toc-topic-selection-introduction" class="nav-link" data-scroll-target="#topic-selection-introduction">Topic Selection &amp; Introduction</a></li>
+  <li><a href="#problem-statement-requirements" id="toc-problem-statement-requirements" class="nav-link" data-scroll-target="#problem-statement-requirements">Problem Statement &amp; Requirements</a></li>
+  </ul></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The Dataset</a></li>
+  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <ul class="collapse">
+  <li><a href="#key-data-preparation" id="toc-key-data-preparation" class="nav-link" data-scroll-target="#key-data-preparation">Key Data Preparation</a></li>
+  <li><a href="#key-data-viz" id="toc-key-data-viz" class="nav-link" data-scroll-target="#key-data-viz">Key Data Viz</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -260,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">In-class Ex5a</h1>
+<h1 class="title">The Proposal</h1>
 </div>
 
 
@@ -270,21 +249,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Jayexx Low </p>
+             <p>Jayexx, Fudi, Fishgrey </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 11, 2024</p>
+      <p class="date">May 15, 2024</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 25, 2024</p>
+      <p class="date-modified">May 26, 2024</p>
     </div>
   </div>
     
@@ -293,25 +272,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="installing-loading-required-libraries" class="level3">
-<h3 class="anchored" data-anchor-id="installing-loading-required-libraries">Installing &amp; loading required libraries</h3>
-<p>The code chunk below installs and launches the tidyverse, ggdist, ggridges, colourspace &amp; ggthemes packages into R environment</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span> <span class="fu">p_load</span>(jsonlite, tidyverse, tidygraph, ggraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="group-project-proposal" class="level1">
+<h1>Group Project proposal</h1>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<section id="topic-selection-introduction" class="level3">
+<h3 class="anchored" data-anchor-id="topic-selection-introduction">Topic Selection &amp; Introduction</h3>
+<p>With the given choices based on the VAST Challenge 2024 and CHINAVIS 2024 Data Visualisation Competition, the selected topic for this group project is Challenge I from the latter, titled「Data Analysis Inspires Wisdom」Time-Series Multivariate Education Data Visual Analytics Challenge . This topic was chosen due to the to the Project Group members’ contextual familiarity with the topic, as well as its alignment the members’ learning interests in leveraging on key visual analytics tools, to explore and design data-driven solutions for seemingly complex problems.</p>
+<p>The selected project is centred on the learning patterns of learners in a programming course conducted by NorthClass Education Training Institute. Fundamentally, the project’s raison d’etre is to provide actionable insights towards the institution’s endeavor to diagnose and analyze learners’ knowledge mastery levels, monitor the trends in their learning behaviors, identify and dissect potential factors that contribute to learning difficulties, and hence to derive feasible suggestions to adjust teaching strategies and course design.</p>
+<p>To this end, data was collected from a select group of learners over a specified set of programming tasks over a particular learning period to facilitate the design and implementation of a Visual Analytics solution as a key outcome in this project.</p>
 </section>
-<section id="importing-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="importing-the-data">Importing the data</h3>
-<p>The code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package, which is part of the tidyverse package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mc1_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"data/mc1.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mc2_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"data/mc2.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>mc3_data &lt;- fromJSON("data/mc3.json")</code></pre>
+<section id="problem-statement-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="problem-statement-requirements">Problem Statement &amp; Requirements</h3>
+<p>From the Challenge, the key problem statement was to perform a comprehensive analysis of multiple datasets that describe various aspects of the learner’s profile, learning patterns and status, to derive key insights to enhance teaching strategies and course design.</p>
+<p>Consequently the key requirements based on the 5 stipulated tasks in the challenges were as follows.</p>
+<ul>
+<li>Task 1: to provide a quantitative assessment of the learners’ knowledge mastery and identify weak links in their knowledge system, based on the multi-dimensional attributes such as answer scores and answer status in the learners’ log records of the learners’ question-answering behaviors.
+<ul>
+<li>This would entail an analysis of the aggregate performance of the learners in their programming tasks, including measures of central tendency, or any notable patterns that can glean insights towards knowledge mastery and weaknesses from the given dataset</li>
+</ul></li>
+<li>Task 2: Mine personalized learning behavior patterns based on learners’ characteristics, and design and present learners’ profiles from various perspectives, including peak answering hours, preferred question types, correct answering rates, etc.
+<ul>
+<li>This would entail</li>
+</ul></li>
+<li>Different learning modes directly impact learners’ ability to absorb, integrate, and apply knowledge. Efficient learning modes can enhance deep understanding and long-term memory retention of knowledge. Please model the potential relationship between learning modes and knowledge acquisition, present the results in the form of a graph, and provide a brief analysis.
+<ul>
+<li>This would entail….</li>
+</ul></li>
+<li>The difficulty level of questions should align with the learner’s level of knowledge. When a learner possesses a high level of knowledge but achieves a low percentage of correct answers, it indicates that the question’s difficulty exceeds their ability. Please utilize Visual Analytics to identify these inappropriate questions.
+<ul>
+<li>This would entail….</li>
+</ul></li>
+<li>Based on the outcomes of the aforementioned analysis, it is crucial to offer valuable recommendations for topic designers and course managers to optimize question bank content settings and enhance the quality of teaching and learning. Please briefly explain the rationale behind these suggestions.
+<ul>
+<li>This would entail….</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
+<p>The provided materials for included 3 datasets described below, as well as a data description document</p>
+<ul>
+<li>Dataset 1: Student Information - This comprises of…</li>
+<li>Dataset 2: Learning Subject Title Information - This comprises of…</li>
+<li>Dataset 3: Class Submission Records - This comprises of…</li>
+</ul>
+</section>
+<section id="approach" class="level2">
+<h2 class="anchored" data-anchor-id="approach">Approach</h2>
+<p>The broad approach for the project is shown in the figure below.</p>
+<p>…..Insert xmind diagram here……</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Our methodology systematically integrates data collection, data processing, analysis, pattern mining, modeling, and recommendation to create a comprehensive Visual Analytics solution for improving teaching strategies and course designs at NorthClass.</p>
+<section id="key-data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="key-data-preparation">Key Data Preparation</h3>
+<p>Based on initial assessment of the datasets, the Key Data preparation steps required are as follows.</p>
+<ul>
+<li>…….</li>
+<li>…… Firstly, it focus on data collection and data processing, ensuring consistency in data records. Remove duplicates, handle missing values through imputation or deletion, and correct inconsistencies. Create new relevant attributes if needed.</li>
+</ul>
+</section>
+<section id="key-data-viz" class="level3">
+<h3 class="anchored" data-anchor-id="key-data-viz">Key Data Viz</h3>
+<p>To address the aforesaid requirements, the envisioned DataViz for this project will be as as follows.</p>
+<ul>
+<li>……</li>
+<li>…… Secondly., the analysis of answering behaviors involves identifying key performance metrics such as average scores, answer correctness, and time correlations to evaluate learners’ understanding and application of knowledge. Descriptive statistics will be used to compute mean, median, and mode of scores for different topics and question types. Correlation analysis will be applied to study the relationship between time taken to answer and correctness. Histograms and box plots could be used to visualize score distributions. Performance metrics could be caculated such as accuracy rate, average attempts per question, and time efficiency.</li>
+</ul>
+<p>Thirdly, learning behavior patterns involve analyzing habitual actions. In preference analysis, time-series analysis will be used to identify peak answering times, analysing the frequency and performance of different question types by bar charts and pie charts to get the preferred question type. To cluster the learner group and segment profile, clustering algorithms like K-means or hierarchical clustering can be used based on behavior patterns.</p>
+<p>Furthermore, in modeling the relationship between learning modes and knowledge acquisition, basic analysis on feature selection, standardization, correlation analysis, and descriptive analysis will be conducted to define knowledge acquisition. Linear or logistic regression models can be used to predict knowledge acquisition based on learning modes. Integrate results from different models to enhance predictive accuracy and interpret the results to provide insights.</p>
+<p>To identify difficulties based on learner knowledge levels, difficulty and knowledge levels will be categorized based on the historical performance data, and thresholds will be defined to filter data. Filter and analyze data to detect inappropriate questions that are too difficult or too easy based on learner performance.</p>
+<p>Last but not least, based on the output, actionable recommendations will be provided, aiming to optimize the question bank, align difficulty levels with learners’ abilities, and enhance the overall quality of teaching and learning.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
