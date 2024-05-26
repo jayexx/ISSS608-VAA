@@ -53,7 +53,7 @@ The broad approach for the project is shown in the figure below.
 
 ## Methodology
 
-Our methodology systematically integrates data collection, data processing, analysis, pattern mining, modeling, and recommendation to create a comprehensive Visual Analytics solution for improving teaching strategies and course designs at NorthClass.
+Our methodology systematically integrates data collection, data processing, analysis, pattern mining, modeling, and recommendations to create a comprehensive Visual Analytics solution for improving teaching strategies and course designs at NorthClass Institute.
 
 ### Key Data Preparation
 
@@ -68,21 +68,26 @@ Data preprocessing and cleaning is required at the initial phase to ensure usabi
 
 To address the aforesaid requirements, the following methodologies will be considered.
 
--   the analysis of answering behaviors involves identifying key performance metrics such as average scores, answer correctness, and time correlations to evaluate learners' understanding and application of knowledge. Descriptive statistics will be used to compute mean, median, and mode of scores for different topics and question types. Correlation analysis will be applied to study the relationship between time taken to answer and correctness. Histograms and box plots could be used to visualize score distributions. Performance metrics could be caculated such as accuracy rate, average attempts per question, and time efficiency.
--   learning behavior patterns involve analyzing habitual actions. In preference analysis, time-series analysis will be used to identify peak answering times, analysing the frequency and performance of different question types by bar charts and pie charts to get the preferred question type. To cluster the learner group and segment profile, clustering algorithms like K-means or hierarchical clustering can be used based on behavior patterns.
--   Furthermore, in modeling the relationship between learning modes and knowledge acquisition, basic analysis on feature selection, standardization, correlation analysis, and descriptive analysis will be conducted to define knowledge acquisition. Linear or logistic regression models can be used to predict knowledge acquisition based on learning modes. Integrate results from different models to enhance predictive accuracy and interpret the results to provide insights.
+-   The analysis of answering behaviors involves identifying key performance metrics such as average scores, answer correctness, and time correlations to evaluate learners' understanding and application of knowledge. Descriptive statistics will be used to compute mean, median, and mode of scores for different topics and question types. Correlation analysis will be applied to study the relationship between time taken to answer and correctness. Histograms and box plots could be used to visualize score distributions. Performance metrics could be caculated such as accuracy rate, average attempts per question, and time efficiency.
+-   Learning behavior patterns involve analyzing habitual actions. In preference analysis, time-series analysis will be used to identify peak answering times, analysing the frequency and performance of different question types by bar charts and pie charts to get the preferred question type. To cluster the learner group and segment profile, clustering algorithms like K-means or hierarchical clustering can be used based on behavior patterns.
+-   Furthermore, in modeling the relationship between learning modes and knowledge acquisition, basic analysis on feature selection, standardization, correlation analysis, and descriptive analysis will be conducted to define knowledge acquisition. Clustering and Association analysis can be used to ascertain the statistical significance of the relationship if any.
 -   To identify difficulties based on learner knowledge levels, difficulty and knowledge levels will be categorized based on the historical performance data, and thresholds will be defined to filter data. Filter and analyze data to detect inappropriate questions that are too difficult or too easy based on learner performance.
 -   Last but not least, based on the output, actionable recommendations will be provided, aiming to optimize the question bank, align difficulty levels with learners' abilities, and enhance the overall quality of teaching and learning.
 
 Accordingly, the envisioned DataViz for this project will be as as follows.
 
--   Bar plot for mean, median, and mode of scores for different topics and question types.
--   Bar plot for classifying answers into correct and incorrect categories.
--   Scatter plot for time vs. Correctness
--   Score distribution and performance metrics: Histogram for score distribution, bar plot for accuracy rate, ridgeline plot for Performance Metrics
--   Peaking hours analysis:
+-   General Analysis (for Task 1):
+    -   Bar plot for mean, median, and mode of scores for different topics and question types.
+    -   Bar plot for classifying answers into correct and incorrect categories.
+    -   Scatter plot for time vs. Correctness
+-   Score distribution and performance metrics (for Tasks 1 & 4): 
+    -   Histogram for score distribution, bar plot for accuracy rate, ridgeline plot for Performance Metrics
+-   Peaking hours analysis (for Task 2):
     -   Time line chart: Displays the number of activities at different time points in a day to help identify peak hours.
     -   Heat map: Displays the distribution of daily or weekly activities to help discover high-frequency activities in a specific time period.
--   Clustering result display:
+-   Clustering result display (for Task 2 & 3):
     -   Radar chart: Displays multiple dimensional features of each cluster.
     -   Box plot: Displays the distribution of each cluster to understand the differences of clusters.
+-   Determine Association and Relationship between Variables (for Task 3 & 4):
+    -   Scatter plot with best-fit line/curve and shaded area for significance level using ggscaterstats for single numerical independent variable and dependent variable
+    -   Multiple Violin plots using ggbetweenstats for multiple categorical independent variables and numerical independent variable

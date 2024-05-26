@@ -321,7 +321,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>Our methodology systematically integrates data collection, data processing, analysis, pattern mining, modeling, and recommendation to create a comprehensive Visual Analytics solution for improving teaching strategies and course designs at NorthClass.</p>
+<p>Our methodology systematically integrates data collection, data processing, analysis, pattern mining, modeling, and recommendations to create a comprehensive Visual Analytics solution for improving teaching strategies and course designs at NorthClass Institute.</p>
 <section id="key-data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="key-data-preparation">Key Data Preparation</h3>
 <p>Data preprocessing and cleaning is required at the initial phase to ensure usability and consistency of the data records for subsequent data analysis. Based on initial assessment of the datasets, the Key Data preparation steps required are as follows.</p>
@@ -336,27 +336,38 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="key-data-viz">Key Data Viz</h3>
 <p>To address the aforesaid requirements, the following methodologies will be considered.</p>
 <ul>
-<li>the analysis of answering behaviors involves identifying key performance metrics such as average scores, answer correctness, and time correlations to evaluate learners’ understanding and application of knowledge. Descriptive statistics will be used to compute mean, median, and mode of scores for different topics and question types. Correlation analysis will be applied to study the relationship between time taken to answer and correctness. Histograms and box plots could be used to visualize score distributions. Performance metrics could be caculated such as accuracy rate, average attempts per question, and time efficiency.</li>
-<li>learning behavior patterns involve analyzing habitual actions. In preference analysis, time-series analysis will be used to identify peak answering times, analysing the frequency and performance of different question types by bar charts and pie charts to get the preferred question type. To cluster the learner group and segment profile, clustering algorithms like K-means or hierarchical clustering can be used based on behavior patterns.</li>
-<li>Furthermore, in modeling the relationship between learning modes and knowledge acquisition, basic analysis on feature selection, standardization, correlation analysis, and descriptive analysis will be conducted to define knowledge acquisition. Linear or logistic regression models can be used to predict knowledge acquisition based on learning modes. Integrate results from different models to enhance predictive accuracy and interpret the results to provide insights.</li>
+<li>The analysis of answering behaviors involves identifying key performance metrics such as average scores, answer correctness, and time correlations to evaluate learners’ understanding and application of knowledge. Descriptive statistics will be used to compute mean, median, and mode of scores for different topics and question types. Correlation analysis will be applied to study the relationship between time taken to answer and correctness. Histograms and box plots could be used to visualize score distributions. Performance metrics could be caculated such as accuracy rate, average attempts per question, and time efficiency.</li>
+<li>Learning behavior patterns involve analyzing habitual actions. In preference analysis, time-series analysis will be used to identify peak answering times, analysing the frequency and performance of different question types by bar charts and pie charts to get the preferred question type. To cluster the learner group and segment profile, clustering algorithms like K-means or hierarchical clustering can be used based on behavior patterns.</li>
+<li>Furthermore, in modeling the relationship between learning modes and knowledge acquisition, basic analysis on feature selection, standardization, correlation analysis, and descriptive analysis will be conducted to define knowledge acquisition. Clustering and Association analysis can be used to ascertain the statistical significance of the relationship if any.</li>
 <li>To identify difficulties based on learner knowledge levels, difficulty and knowledge levels will be categorized based on the historical performance data, and thresholds will be defined to filter data. Filter and analyze data to detect inappropriate questions that are too difficult or too easy based on learner performance.</li>
 <li>Last but not least, based on the output, actionable recommendations will be provided, aiming to optimize the question bank, align difficulty levels with learners’ abilities, and enhance the overall quality of teaching and learning.</li>
 </ul>
 <p>Accordingly, the envisioned DataViz for this project will be as as follows.</p>
 <ul>
+<li>General Analysis (for Task 1):
+<ul>
 <li>Bar plot for mean, median, and mode of scores for different topics and question types.</li>
 <li>Bar plot for classifying answers into correct and incorrect categories.</li>
 <li>Scatter plot for time vs.&nbsp;Correctness</li>
-<li>Score distribution and performance metrics:&nbsp;Histogram for score distribution, bar plot for accuracy rate, ridgeline plot for Performance&nbsp;Metrics</li>
-<li>Peaking hours analysis:
+</ul></li>
+<li>Score distribution and performance metrics (for Tasks 1 &amp; 4):&nbsp;
+<ul>
+<li>Histogram for score distribution, bar plot for accuracy rate, ridgeline plot for Performance&nbsp;Metrics</li>
+</ul></li>
+<li>Peaking hours analysis (for Task 2):
 <ul>
 <li>Time line chart: Displays the number of activities at different time points in a day to help identify peak hours.</li>
 <li>Heat map: Displays the distribution of daily or weekly activities to help discover high-frequency activities in a specific time period.</li>
 </ul></li>
-<li>Clustering result display:
+<li>Clustering result display (for Task 2 &amp; 3):
 <ul>
 <li>Radar chart: Displays multiple dimensional features of each cluster.</li>
 <li>Box plot: Displays the distribution of each cluster to understand the differences&nbsp;of&nbsp;clusters.</li>
+</ul></li>
+<li>Determine Association and Relationship between Variables (for Task 3 &amp; 4):
+<ul>
+<li>Scatter plot with best-fit line/curve and shaded area for significance level using ggscaterstats for single numerical independent variable and dependent variable</li>
+<li>Multiple Violin plots using ggbetweenstats for multiple categorical independent variables and numerical independent variable</li>
 </ul></li>
 </ul>
 
