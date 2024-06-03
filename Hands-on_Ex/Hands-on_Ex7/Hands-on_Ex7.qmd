@@ -264,6 +264,7 @@ hline.data <- Vietnam %>%
 Finally the Cycle plot can be built, using the code chunk below.
 
 ```{r}
+#| fig-width: 16
 ggplot() + 
   geom_line(data=Vietnam,
             aes(x=year, 
