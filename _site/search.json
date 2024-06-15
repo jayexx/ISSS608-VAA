@@ -803,5 +803,61 @@
     "title": "Take-home Ex3",
     "section": "Conclusion",
     "text": "Conclusion\nIn conclusion, the visual analysis of learning modes clustering found that 2 substantially distinct clusters can be formed using the selected students’ learning mode features, whereby cluster 2 tends to be the more earnest learning mode cluster.\nUsing these clusters to draw a relationship with indicators of students’ knowledge acquistion found that cluster 2 also had a better knowledge acquisition although cluster 1 students seems to have submit lesser answers in general, hence having a higher percentage of correct answers.\nAnd therefore, the consensus in the analysis found that there is a statistically significant relationship between the selected indicators for more hardworking learning modes with better knowledge aquisition."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex9/In-class_Ex9.html",
+    "href": "In-class_Ex/In-class_Ex9/In-class_Ex9.html",
+    "title": "In-class Ex9",
+    "section": "",
+    "text": "The key learning objective of this hands-on exercise is to plot functional and truthful choropleth maps using appropriate R packages."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#overview",
+    "href": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#overview",
+    "title": "In-class Ex9",
+    "section": "",
+    "text": "The key learning objective of this hands-on exercise is to plot functional and truthful choropleth maps using appropriate R packages."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#getting-started",
+    "href": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#getting-started",
+    "title": "In-class Ex9",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe code chunk below installs and loads various required packages into R environment\n\npacman:: p_load(scatterPlotMatrix, parallelPlot, cluster, factoextra, tidyverse)"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#importing-data",
+    "href": "In-class_Ex/In-class_Ex9/In-class_Ex9.html#importing-data",
+    "title": "In-class Ex9",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nwine &lt;- read_csv(\"data/wine_quality.csv\")\n\n\nggplot(data = wine,\n       aes(x = type)) +\n  geom_bar()\n\n\n\n\n\nwhitewine &lt;- wine %&gt;%\n  filter(type == \"white\") %&gt;%\n  select(c(1:11))\n\n\nscatterPlotMatrix(whitewine, \n                  corrPlotType = \"Text\",\n                  distribType = 1,\n                  rotateTitle = TRUE,\n                  width = 900,\n                  height = 900\n                  )"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html",
+    "href": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html",
+    "title": "Hands-on Ex9a",
+    "section": "",
+    "text": "Ternary plots are a way of displaying the distribution and variability of three-part compositional data. (For example, the proportion of aged, economy active and young population or sand, silt, and clay in soil.) It’s display is a triangle with sides scaled from 0 to 1. Each side represents one of the three components. A point is plotted so that a line drawn perpendicular from the point to each leg of the triangle intersect at the component values of the point.\nThe key learning objective of this hands-on exercise is to build ternary plot programmatically using R for visualising and analysing population structure of Singapore..\nThe hands-on exercise consists of 4 steps:\n\nInstall and launch tidyverse and ggtern packages.\nDerive 3 new measures using mutate() function of dplyr package.\nBuild a static ternary plot using ggtern() function of ggtern package.\nBuild an interactive ternary plot using plot-ly() function of Plotly R package.\n\n\n\n\nFor this exercise, two main R packages will be used in this hands-on exercise, they are:\n\nggtern, a ggplot extension specially designed to plot ternary diagrams. The package will be used to plot static ternary plots.\nPlotly R, an R package for creating interactive web-based graphs via plotly’s JavaScript graphing library, plotly.js . The plotly R libary contains the ggplotly function, which will convert ggplot2 figures into a Plotly object.\n\nSelected tidyverse family packages namely: readr, dplyr and tidyr also needs to be installed and loaded.\nIn this exercise, version 3.2.1 of ggplot2 will be installed instead of the latest version of ggplot2. This is because the current version of ggtern package is not compatible to the latest version of ggplot2.\nThe code chunks below will accomplish the task.\n\npacman:: p_load(plotly, ggtern, tidyverse)\n\npackage 'tensorA' successfully unpacked and MD5 sums checked\npackage 'bayesm' successfully unpacked and MD5 sums checked\npackage 'compositions' successfully unpacked and MD5 sums checked\npackage 'latex2exp' successfully unpacked and MD5 sums checked\npackage 'proto' successfully unpacked and MD5 sums checked\npackage 'hexbin' successfully unpacked and MD5 sums checked\npackage 'ggtern' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\lowji\\AppData\\Local\\Temp\\RtmpeG4ci2\\downloaded_packages\n\n\n\n\n\n\n\nFor the purpose of this hands-on exercise, the Singapore Residents by Planning AreaSubzone, Age Group, Sex and Type of Dwelling, June 2000-2018 data will be used. The data set has been downloaded and included in the data sub-folder of the hands-on exercise folder. It is called respopagsex2000to2018_tidy.csv and is in csv file format.\n\n\n\nTo import respopagsex2000to2018_tidy.csv into R, read_csv() function of readr package will be used.\n\n#Reading the data into R environment\npop_data &lt;- read_csv(\"data/respopagsex2000to2018_tidy.csv\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#overview",
+    "href": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#overview",
+    "title": "Hands-on Ex9a",
+    "section": "",
+    "text": "Ternary plots are a way of displaying the distribution and variability of three-part compositional data. (For example, the proportion of aged, economy active and young population or sand, silt, and clay in soil.) It’s display is a triangle with sides scaled from 0 to 1. Each side represents one of the three components. A point is plotted so that a line drawn perpendicular from the point to each leg of the triangle intersect at the component values of the point.\nThe key learning objective of this hands-on exercise is to build ternary plot programmatically using R for visualising and analysing population structure of Singapore..\nThe hands-on exercise consists of 4 steps:\n\nInstall and launch tidyverse and ggtern packages.\nDerive 3 new measures using mutate() function of dplyr package.\nBuild a static ternary plot using ggtern() function of ggtern package.\nBuild an interactive ternary plot using plot-ly() function of Plotly R package."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#getting-started",
+    "href": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#getting-started",
+    "title": "Hands-on Ex9a",
+    "section": "",
+    "text": "For this exercise, two main R packages will be used in this hands-on exercise, they are:\n\nggtern, a ggplot extension specially designed to plot ternary diagrams. The package will be used to plot static ternary plots.\nPlotly R, an R package for creating interactive web-based graphs via plotly’s JavaScript graphing library, plotly.js . The plotly R libary contains the ggplotly function, which will convert ggplot2 figures into a Plotly object.\n\nSelected tidyverse family packages namely: readr, dplyr and tidyr also needs to be installed and loaded.\nIn this exercise, version 3.2.1 of ggplot2 will be installed instead of the latest version of ggplot2. This is because the current version of ggtern package is not compatible to the latest version of ggplot2.\nThe code chunks below will accomplish the task.\n\npacman:: p_load(plotly, ggtern, tidyverse)\n\npackage 'tensorA' successfully unpacked and MD5 sums checked\npackage 'bayesm' successfully unpacked and MD5 sums checked\npackage 'compositions' successfully unpacked and MD5 sums checked\npackage 'latex2exp' successfully unpacked and MD5 sums checked\npackage 'proto' successfully unpacked and MD5 sums checked\npackage 'hexbin' successfully unpacked and MD5 sums checked\npackage 'ggtern' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\lowji\\AppData\\Local\\Temp\\RtmpeG4ci2\\downloaded_packages"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#data-preparation",
+    "href": "Hands-on_Ex/Hands-on_Ex9/Hands-on_Ex9a.html#data-preparation",
+    "title": "Hands-on Ex9a",
+    "section": "",
+    "text": "For the purpose of this hands-on exercise, the Singapore Residents by Planning AreaSubzone, Age Group, Sex and Type of Dwelling, June 2000-2018 data will be used. The data set has been downloaded and included in the data sub-folder of the hands-on exercise folder. It is called respopagsex2000to2018_tidy.csv and is in csv file format.\n\n\n\nTo import respopagsex2000to2018_tidy.csv into R, read_csv() function of readr package will be used.\n\n#Reading the data into R environment\npop_data &lt;- read_csv(\"data/respopagsex2000to2018_tidy.csv\")"
   }
 ]

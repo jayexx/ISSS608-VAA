@@ -48,7 +48,47 @@ scatterPlotMatrix(whitewine,
                   )
 ```
 
+# Compute gap stats
 
+```{r}
+set.seed(1234)
+gap_stat <- clusGap(whitewine,
+                    FUN = kmeans,
+                    nstart = 25,
+                    K.max = 8,
+                    B=50)
+print(gap_stat, method = "firstmax")
+```
+
+```{r}
+set.seed(123)
+kmeans4 <- kmeans(whitewine, 4, nstart = 5)
+print(kmeans4)
+```
+
+
+```{r}
+fviz_cluster(kmeans4, data = whitewine)
+```
+
+
+```{r}
+whitewine <- whitewine %>%
+  mutate(Cluster = kmeans4$cluster)
+```
+
+```{r}
+whitewine$Cluster <-
+  as_factor(whitewine$Cluster)
+```
+
+```{r}
+whitewine %>%
+  parallelPlot(refColumnDim = "Cluster",
+              width = 300,
+              height = 250,
+              rotateTitle = TRUE)
+```
 
 
 
