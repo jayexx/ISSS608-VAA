@@ -1,0 +1,58 @@
+---
+title: "In-class Ex9"
+author: "Jayexx"
+date: "June 15, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+## Overview
+
+The key learning objective of this hands-on exercise is to plot functional and truthful choropleth maps using appropriate R packages.
+
+## Getting Started
+
+The code chunk below installs and loads various required packages into R environment
+
+```{r}
+pacman:: p_load(scatterPlotMatrix, parallelPlot, cluster, factoextra, tidyverse)
+```
+
+## Importing Data
+
+```{R}
+wine <- read_csv("data/wine_quality.csv")
+```
+```{r}
+ggplot(data = wine,
+       aes(x = type)) +
+  geom_bar()
+```
+```{r}
+whitewine <- wine %>%
+  filter(type == "white") %>%
+  select(c(1:11))
+```
+
+```{r}
+scatterPlotMatrix(whitewine, 
+                  corrPlotType = "Text",
+                  distribType = 1,
+                  rotateTitle = TRUE,
+                  width = 900,
+                  height = 900
+                  )
+```
+
+
+
+
+
+
+
+
+
