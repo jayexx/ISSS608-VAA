@@ -1,0 +1,5 @@
+---
+title: "My first Quarto Dashboard"
+author: "Jayexx"
+format: dashboard
+---
