@@ -11,15 +11,21 @@ execute:
 ---
 
 ```{r}
+#| code-fold: true
+
 pacman:: p_load(lubridate, ggthemes, reactable,
 reactablefmtr, gt, gtExtras, tidyverse, RODBC, svglite)
 ```
 
 ```{r}
+#| code-fold: true
+
 coffeechain <- read_rds("data/rds/CoffeeChain.rds")
 ```
 
 ```{r}
+#| code-fold: true
+
 productSales <- coffeechain %>%
   group_by(`Product`) %>%
   summarise(`target` = sum(`Budget Sales`),
@@ -28,6 +34,8 @@ productSales <- coffeechain %>%
 ```
 
 ```{r}
+#| code-fold: true
+
 productProfit <- coffeechain %>%
   group_by(`Product`) %>%
   summarise(`target` = sum(`Budget Profit`),
@@ -36,6 +44,9 @@ productProfit <- coffeechain %>%
 ```
 
 ```{R}
+#| code-fold: true
+
+
 ggplot(productSales, aes(Product, current)) + 
   geom_col(aes(Product, max(target) * 1.01),
            fill="grey85", width=0.85) +
@@ -56,3 +67,26 @@ ggplot(productSales, aes(Product, current)) +
   coord_flip()
 ```
 
+```{R}
+#| code-fold: true
+
+
+ggplot(productProfit, aes(Product, current)) + 
+  geom_col(aes(Product, max(target) * 1.01),
+           fill="grey85", width=0.85) +
+  geom_col(aes(Product, target * 0.75),
+           fill="grey60", width=0.85) +
+  geom_col(aes(Product, target * 0.5),
+           fill="grey50", width=0.85) +
+  geom_col(aes(Product, current), 
+           width=0.35,
+           fill = "black") + 
+  geom_errorbar(aes(y = target,
+                    x = Product, 
+                    ymin = target,
+                    ymax= target), 
+                width = .4,
+                colour = "red",
+                size = 1) +
+  coord_flip()
+```
