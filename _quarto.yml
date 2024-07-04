@@ -63,6 +63,8 @@ website:
         href: "In-class_Ex/In-class_Ex6/In-class_Ex6a.html"
       - text: "In-class Ex 9"
         href: "In-class_Ex/In-class_Ex9/In-class_Ex9.html"
+      - text: "In-class Ex 10"
+        href: "In-class_Ex/In-class_Ex10/In-class_Ex10.html"
     - text: "Take-home Ex"
       menu:
       - text: "Take-home Ex 1"
