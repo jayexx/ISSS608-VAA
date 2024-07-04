@@ -73,8 +73,8 @@ website:
         href: "Take-home_Ex/Take-home_Ex3/Take-home_Ex3.html"
     - text: "Group project"
       menu:
-      - text: "Proposal"
-        href: "Group_Project_G6/Proposal/Group6_project_proposal.html"
+      - text: "Project Website"
+        href: "https://takin-g6-2-hk.netlify.app/"
     right:  
       - href: index.qmd
         text: Home
